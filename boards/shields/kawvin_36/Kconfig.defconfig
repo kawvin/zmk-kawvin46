@@ -1,0 +1,23 @@
+# Copyright (c) 2023 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SHIELD_KAWVIN_36_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Kawvin_36"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif # SHIELD_KAWVIN_36_LEFT
+
+if SHIELD_KAWVIN_36_LEFT || SHIELD_KAWVIN_36_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_RGB_UNDERGLOW
+    select WS2812_STRIP
+    select SPI
+
+endif # SHIELD_KAWVIN_36_LEFT || SHIELD_KAWVIN_36_RIGHT
