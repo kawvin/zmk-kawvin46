@@ -1,0 +1,8 @@
+# Copyright (c) 2023 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+config SHIELD_KAWVIN_46_LEFT
+    def_bool $(shields_list_contains,kawvin_46_left)
+
+config SHIELD_KAWVIN_46_RIGHT
+    def_bool $(shields_list_contains,kawvin_46_right)
