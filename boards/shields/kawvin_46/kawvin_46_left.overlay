@@ -10,13 +10,13 @@
 &pinctrl {
     spi3_default: spi3_default {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 12)>;
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 22)>;
         };
     };
 
     spi3_sleep: spi3_sleep {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 12)>;
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 22)>;
             low-power-enable;
         };
     };
@@ -38,7 +38,7 @@
         spi-max-frequency = <4000000>;
 
         /* WS2812 */
-        chain-length = <48>; /* arbitrary; change at will */
+        chain-length = <1>; /* arbitrary; change at will */
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
         color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
@@ -57,20 +57,21 @@
         diode-direction = "col2row";
 
         row-gpios
-            = <&gpio0  2 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
-            , <&gpio1 15 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
+            = <&gpio0 21 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
+            , <&gpio0  8 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
+            , <&gpio0 12 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
             , <&gpio0 11 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
-            , <&gpio1  0 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
-            , <&gpio0 24 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
+            , <&gpio0  6 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
+            , <&gpio0 19 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
             ;
 
         col-gpios
-            = <&gpio0  9 GPIO_ACTIVE_HIGH>
-            , <&gpio1 11 GPIO_ACTIVE_HIGH>
-            , <&gpio1 13 GPIO_ACTIVE_HIGH>
-            , <&gpio0 29 GPIO_ACTIVE_HIGH>
-            , <&gpio0 31 GPIO_ACTIVE_HIGH>
-            , <&gpio1  6 GPIO_ACTIVE_HIGH>
+            = <&gpio0 23 GPIO_ACTIVE_HIGH>
+            , <&gpio1  9 GPIO_ACTIVE_HIGH>
+            , <&gpio0 30 GPIO_ACTIVE_HIGH>
+            , <&gpio0 28 GPIO_ACTIVE_HIGH>
+            , <&gpio0  3 GPIO_ACTIVE_HIGH>
+            , <&gpio0 20 GPIO_ACTIVE_HIGH>
             ;
     };
 };
