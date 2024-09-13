@@ -117,13 +117,13 @@
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            bindings = <&kp>, <&kp>;
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
-            quick-tap-ms = <180>;
+            quick-tap-ms = <0>;
             flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+
+            label = "HOMEROW_MODS";
         };
 
         ltq: ltq {
@@ -138,12 +138,12 @@
 
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
-            label = "AUTO_SHIFT";
-            bindings = <&kp>, <&kp>;
-
             #binding-cells = <2>;
-            tapping-term-ms = <135>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <0>;
+            label = "AUTO_SHIFT";
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
         };
 
         rgb_encoder: rgb_encoder {
@@ -159,47 +159,83 @@
 
         esc {
             bindings = <&kp ESCAPE>;
-            key-positions = <0 1>;
+            key-positions = <15 16>;
         };
 
-        left_bkt {
-            bindings = <&kp LEFT_BRACKET>;
-            key-positions = <4 5>;
+        bkt_left {
+            bindings = <&mt RIGHT_BRACKET LEFT_BRACKET>;
+            key-positions = <15 16>;
         };
 
-        right_bkt {
-            bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <6 7>;
+        bkt_right {
+            bindings = <&mt LEFT_BRACKET RIGHT_BRACKET>;
+            key-positions = <17 18>;
         };
 
-        left_par {
-            bindings = <&kp LEFT_PARENTHESIS>;
+        par_left {
+            bindings = <&mt RIGHT_PARENTHESIS LEFT_PARENTHESIS>;
+            key-positions = <18 19>;
+        };
+
+        par_right {
+            bindings = <&mt LEFT_PARENTHESIS RIGHT_PARENTHESIS>;
+            key-positions = <24 25>;
+            timeout-ms = <200>;
+        };
+
+        brace_left {
+            bindings = <&mt RIGHT_BRACE LEFT_BRACE>;
+            key-positions = <12 13>;
+        };
+
+        brace_right {
+            bindings = <&mt LEFT_BRACE RIGHT_BRACE>;
+            key-positions = <13 12>;
+        };
+
+        bac_pipe {
+            bindings = <&mt PIPE BACKSLASH>;
+            key-positions = <12 13>;
+        };
+
+        minus_under_left {
+            bindings = <&mt UNDER MINUS>;
             key-positions = <16 17>;
         };
 
-        right_par {
-            bindings = <&kp RIGHT_PARENTHESIS>;
-            key-positions = <21 20>;
+        comma_dot {
+            bindings = <&mt DOT COMMA>;
+            key-positions = <15 16>;
         };
 
-        left_brace {
-            bindings = <&kp LEFT_BRACE>;
-            key-positions = <30 31>;
+        bslh_fslh {
+            bindings = <&mt BSLH SLASH>;
+            key-positions = <15 14>;
         };
 
-        right_brace {
-            bindings = <&kp RIGHT_BRACE>;
-            key-positions = <38 39>;
+        direction_left {
+            bindings = <&kp LEFT_ARROW>;
+            key-positions = <10 19>;
         };
 
-        bac {
-            bindings = <&kp NON_US_BACKSLASH>;
-            key-positions = <5 6>;
+        direction_right {
+            bindings = <&kp RIGHT>;
+            key-positions = <10 11>;
         };
 
-        pipe {
-            bindings = <&kp PIPE>;
-            key-positions = <20 17>;
+        direction_up {
+            bindings = <&kp UP_ARROW>;
+            key-positions = <11 13>;
+        };
+
+        direction_down {
+            bindings = <&kp DOWN>;
+            key-positions = <11 19>;
+        };
+
+        minus_under_right {
+            bindings = <&mt UNDER MINUS>;
+            key-positions = <17 16>;
         };
     };
 
