@@ -53,7 +53,7 @@
         compatible = "solomon,ssd1306fb";   //0.91   0.96
         segment-offset = <0>;   //0.91   0.96
         multiplex-ratio = <31>; //128*32
-        com-sequential; //1.30注销本行
+        //com-sequential; //1.30注销本行
         
         // 1.30，使用以下
         //compatible = "sinowealth,sh1106";   //1.30
@@ -61,7 +61,7 @@
 		//multiplex-ratio = <63>; //128*64
         
 		reg = <0x3c>;
-		label = "Dongle_DISPLAY";
+		label = "RIGHT_DISPLAY";
 		page-offset = <0>;
 		display-offset = <0>;
 		segment-remap;
