@@ -9,7 +9,7 @@
 / {
 
     chosen {
-        zmk,underglow = &led_strip;
+        //zmk,underglow = &led_strip;
         zmk,matrix-transform = &default_transform;
     };
 
