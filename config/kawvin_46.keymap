@@ -257,13 +257,27 @@
             bindings = <&none>;
             key-positions = <45 46>;
         };
+
+        vol_mute {
+            bindings = <&kp C_MUTE>;
+            key-positions = <58 59 60>;
+        };
+
+        vol_up {
+            bindings = <&kp C_VOL_UP>;
+            key-positions = <58 60>;
+        };
+
+        vol_down {
+            bindings = <&kp C_VOL_DN>;
+            key-positions = <58 59>;
+        };
     };
 
     //scroll_encoder: scroll_encoder {
     //    compatible = "zmk,behavior-sensor-rotate";
     //    #sensor-binding-cells = <0>;
     //    bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-
     //    tap-ms = <30>;
     //};
 
@@ -281,7 +295,7 @@
             bindings = <
 &mt GRAVE ESC  &kp N1    &kp N2     &kp N3       &kp N4     &kp N5      &kp N6    &kp N7         &kp N8     &kp N9    &kp N0     &mt UNDERSCORE MINUS
 &kp TAB        &kp Q     &kp W      &kp E        &kp R      &kp T       &kp UP    &kp PG_UP      &kp Y      &kp U     &kp I      &kp O                 &kp P     &mt RIGHT_BRACKET LEFT_BRACKET
-&kp LCTRL      &kp A     &kp S      &kp D        &kp F      &kp G       &kp LEFT  &kp N1         &kp RIGHT  &kp HOME  &kp N2     &kp END               &kp H     &kp J                           &kp K  &kp L  &kp SEMI  &kp SQT
+&kp LCTRL      &kp A     &kp S      &kp D        &lt 4 F    &kp G       &kp LEFT  &kp N1         &kp RIGHT  &kp HOME  &kp N2     &kp END               &kp H     &kp J                           &kp K  &kp L  &kp SEMI  &kp SQT
 &kp LSHIFT     &kp Z     &kp X      &kp C        &kp V      &kp B       &kp DOWN  &kp PAGE_DOWN  &kp N      &kp M     &kp COMMA  &kp DOT               &kp FSLH  &kp RSHIFT
 &kp LWIN       &kp LALT  &lt 2 DEL  &lt 1 SPACE  &kp SPACE  &lt 2 BSPC  &kp RALT  &kp RCTRL
             >;
@@ -301,11 +315,11 @@
             //  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
 
             bindings = <
-&trans      &trans         &trans           &trans           &trans       &trans                                                                                 &kp KP_MULTIPLY  &trans          &trans           &trans          &trans      &trans
-&trans      &kp N6         &kp N7           &kp N8           &kp N9       &kp N0              &trans                             &mmv MOVE_UP                    &kp KP_DIVIDE    &kp N4          &kp N5      &kp N6           &trans       &kp F12
-&kp KP_DOT  &kp PG_UP      &kp PAGE_DOWN    &kp HOME         &kp END      &kp ENTER  &trans   &trans   &trans    &mmv MOVE_LEFT  &trans         &mmv MOVE_RIGHT  &kp KP_PLUS      &kp N1   &kp N2  &kp N3  &trans  &trans
-&trans      &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp KP_SUBTRACT  &kp KP_PLUS  &kp BSPC            &trans                             &mmv MOVE_DOWN                  &kp KP_SUBTRACT  &kp N0          &kp KP_DOT  &kp KP_DOT       &mkp MB5       &trans
-                           &trans           &trans           &trans       &trans                                                                                                  &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4
+&kp N0            &trans           &trans           &trans           &trans       &trans      &kp KP_MULTIPLY  &trans          &trans                     &trans          &trans      &to 1
+&trans            &kp N6           &kp N7           &kp N8           &kp N9       &kp KP_DOT  &trans           &mmv MOVE_UP    &mt KP_DIVIDE KP_MULTIPLY  &kp N4          &kp N5      &kp N6           &mkp MB4     &mkp MB5
+&trans            &kp KP_SLASH     &kp KP_MULTIPLY  &kp KP_SUBTRACT  &kp KP_PLUS  &kp ENTER   &trans           &trans          &trans                     &mmv MOVE_LEFT  &trans      &mmv MOVE_RIGHT  &kp KP_PLUS  &kp N1     &kp N2  &kp N3  &mkp MCLK  &trans
+&trans            &kp HOME         &kp END          &kp PG_UP        &kp PG_DN    &kp BSPC    &trans           &mmv MOVE_DOWN  &kp KP_SUBTRACT            &kp N0          &kp KP_DOT  &kp KP_DOT       &mkp LCLK    &mkp RCLK
+&kp LS(LC(HOME))  &kp LS(LC(END))  &trans           &trans           &kp ENTER    &trans      &trans           &trans
             >;
 
             label = "Number";
@@ -325,7 +339,7 @@
             bindings = <
 &bt BT_CLR         &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bootloader    &bootloader  &trans  &trans  &trans         &trans        &trans
 &ext_power EP_TOG  &trans           &rgb_ug RGB_EFF  &kp ENTER        &trans           &trans         &trans       &trans  &trans  &kp HOME       &kp UP_ARROW  &kp END  &trans  &trans
-&rgb_ug RGB_TOG    &rgb_ug RGB_BRD  &rgb_ug RGB_EFR  &rgb_ug RGB_BRI  &trans           &kp LC(ENTER)  &trans       &trans  &trans  &trans         &trans        &trans   &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans
+&rgb_ug RGB_TOG    &rgb_ug RGB_BRD  &rgb_ug RGB_EFR  &rgb_ug RGB_BRI  &kp LS(LC(N8))   &kp LC(ENTER)  &trans       &trans  &trans  &trans         &trans        &trans   &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans
 &out OUT_TOG       &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &trans         &trans       &trans  &trans  &kp PAGE_DOWN  &kp PG_UP     &trans   &trans  &trans
 &trans             &trans           &trans           &trans           &trans           &trans         &trans       &trans
             >;
