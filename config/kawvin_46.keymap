@@ -359,11 +359,11 @@
             //  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
 
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp CARET  &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans    &trans    &trans    &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans    &trans    &trans    &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans    &trans    &trans    &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans    &trans    &trans    &trans    &trans  &trans
             >;
 
             label = "Symbol";
