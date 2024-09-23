@@ -338,7 +338,7 @@
 
             bindings = <
 &bt BT_CLR         &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bootloader    &bootloader  &trans  &trans  &trans         &trans        &trans
-&ext_power EP_TOG  &trans           &rgb_ug RGB_EFF  &kp ENTER        &trans           &trans         &trans       &trans  &trans  &kp HOME       &kp UP_ARROW  &kp END  &trans  &trans
+&ext_power EP_TOG  &trans           &rgb_ug RGB_EFF  &kp ENTER        &kp INSERT       &trans         &trans       &trans  &trans  &kp HOME       &kp UP_ARROW  &kp END  &trans  &trans
 &rgb_ug RGB_TOG    &rgb_ug RGB_BRD  &rgb_ug RGB_EFR  &rgb_ug RGB_BRI  &kp LS(LC(N8))   &kp LC(ENTER)  &trans       &trans  &trans  &trans         &trans        &trans   &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans
 &out OUT_TOG       &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &trans         &trans       &trans  &trans  &kp PAGE_DOWN  &kp PG_UP     &trans   &trans  &trans
 &trans             &trans           &trans           &trans           &trans           &trans         &trans       &trans
