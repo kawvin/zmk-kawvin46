@@ -9,5 +9,6 @@ features:
   - keys
   - underglow
 siblings:
+  - kawvin_46_dongle
   - kawvin_46_left
   - kawvin_46_right

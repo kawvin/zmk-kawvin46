@@ -1,7 +1,7 @@
 # Copyright (c) 2023 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-if SHIELD_KAWVIN_46_LEFT
+if SHIELD_KAWVIN_46_LEFT || SHIELD_KAWVIN_46_DONGLE
 
 config ZMK_KEYBOARD_NAME
     default "Kawvin_46"
@@ -11,11 +11,22 @@ config ZMK_SPLIT_ROLE_CENTRAL
 
 endif # SHIELD_KAWVIN_46_LEFT
 
-if SHIELD_KAWVIN_46_LEFT || SHIELD_KAWVIN_46_RIGHT
+if SHIELD_KAWVIN_46_LEFT || SHIELD_KAWVIN_46_RIGHT || SHIELD_KAWVIN_46_DONGLE
 
 config ZMK_SPLIT
     default y
 
+choice BT_CTLR_TX_PWR
+    default BT_CTLR_TX_PWR_PLUS_8
+endchoice
+
+choice ZMK_DISPLAY_WORK_QUEUE
+    default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
+endchoice
+
+endif 
+
+if SHIELD_KAWVIN_46_LEFT || SHIELD_KAWVIN_46_RIGHT 
 config ZMK_RGB_UNDERGLOW
     select WS2812_STRIP
     select SPI
@@ -27,11 +38,6 @@ config SSD1306
 
 config I2C
     default y
-
-choice ZMK_DISPLAY_WORK_QUEUE
-    default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
-endchoice
-
 
 if LVGL
 
