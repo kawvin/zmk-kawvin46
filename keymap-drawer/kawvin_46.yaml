@@ -150,7 +150,7 @@ layers:
   - {t: ▽, type: trans}
   - RGB EFF
   - ENTER
-  - {t: ▽, type: trans}
+  - INSERT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
