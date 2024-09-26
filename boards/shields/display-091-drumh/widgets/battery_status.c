@@ -77,7 +77,7 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     // } else {
     //    lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
     // }
-    if (!state.usb_present) {
+    // if (!state.usb_present) {
         if (level > 95) {
             lv_img_set_src(symbol, batterys_level[9]);
         } else if (level > 85) {
@@ -99,9 +99,9 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
         } else {
             lv_img_set_src(symbol, batterys_level[0]);
         }
-    } else {
-        lv_img_set_src(symbol, batterys_level[10]);
-    }
+    // } else {
+    //     lv_img_set_src(symbol, batterys_level[10]);
+    // }
 }
 
 void battery_status_update_cb(struct battery_state state) {

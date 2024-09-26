@@ -87,11 +87,11 @@ static void set_modifiers(lv_obj_t *widget, struct modifiers_state state) {
 
         if (mod_is_active && !modifier_symbols[i]->is_active) {
             move_object_y(modifier_symbols[i]->symbol, 1, 0);
-            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 4, SIZE_SYMBOLS + 2);
+            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 3, SIZE_SYMBOLS + 1);
             modifier_symbols[i]->is_active = true;
         } else if (!mod_is_active && modifier_symbols[i]->is_active) {
             move_object_y(modifier_symbols[i]->symbol, 0, 1);
-            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 2, SIZE_SYMBOLS + 4);
+            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 1, SIZE_SYMBOLS + 3);
             modifier_symbols[i]->is_active = false;
         }
     }
@@ -120,7 +120,7 @@ int zmk_widget_modifiers_init(struct zmk_widget_modifiers *widget, lv_obj_t *par
     
     static lv_style_t style_line;
     lv_style_init(&style_line);
-    lv_style_set_line_width(&style_line, 2);
+    lv_style_set_line_width(&style_line, 1);
 
     static const lv_point_t selection_line_points[] = { {0, 0}, {SIZE_SYMBOLS, 0} };
 
@@ -132,7 +132,7 @@ int zmk_widget_modifiers_init(struct zmk_widget_modifiers *widget, lv_obj_t *par
         modifier_symbols[i]->selection_line = lv_line_create(widget->obj);
         lv_line_set_points(modifier_symbols[i]->selection_line, selection_line_points, 2);
         lv_obj_add_style(modifier_symbols[i]->selection_line, &style_line, 0);
-        lv_obj_align_to(modifier_symbols[i]->selection_line, modifier_symbols[i]->symbol, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 3);
+        lv_obj_align_to(modifier_symbols[i]->selection_line, modifier_symbols[i]->symbol, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 2);
     }
 
     sys_slist_append(&widgets, &widget->node);
