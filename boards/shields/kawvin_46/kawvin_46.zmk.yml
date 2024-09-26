@@ -4,9 +4,10 @@ name: kawvin_46
 type: shield
 url: https://github.com/kawvin/zmk-config
 requires: [pro_micro]
-# exposes: [i2c_oled]
+exposes: [i2c_oled]
 features:
   - keys
+  - display
   - underglow
 siblings:
   - kawvin_46_dongle
