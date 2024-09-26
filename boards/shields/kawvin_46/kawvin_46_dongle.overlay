@@ -37,17 +37,17 @@
 		height = <32>;
 
         // 0.91或0.96，使用以下
-        //compatible = "solomon,ssd1306fb";   //0.91   0.96
-        //segment-offset = <0>;   //0.91   0.96
-        //multiplex-ratio = <31>; //128*32
-        //com-sequential; //1.30注销本行
-        //label = "Dongle_DISPLAY";
+        compatible = "solomon,ssd1306fb";   //0.91   0.96
+        segment-offset = <0>;   //0.91   0.96
+        multiplex-ratio = <31>; //128*32
+        com-sequential; //1.30注销本行
+        label = "Dongle_DISPLAY";
 
         // 1.30，使用以下
-        compatible = "sinowealth,sh1106";   //1.30
-        segment-offset = <2>;   //1.30
-		multiplex-ratio = <63>; //128*64
-        label = "Dongle_DISPLAY";
+        //compatible = "sinowealth,sh1106";   //1.30
+        //segment-offset = <2>;   //1.30
+		//multiplex-ratio = <63>; //128*64
+        //label = "Dongle_DISPLAY";
 
 		reg = <0x3c>;
 		page-offset = <0>;
