@@ -86,12 +86,12 @@ static void set_modifiers(lv_obj_t *widget, struct modifiers_state state) {
         bool mod_is_active = (state.modifiers & modifier_symbols[i]->modifier) > 0;
 
         if (mod_is_active && !modifier_symbols[i]->is_active) {
-            move_object_y(modifier_symbols[i]->symbol, 1, 0);
-            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 2, SIZE_SYMBOLS + 0);
+            move_object_y(modifier_symbols[i]->symbol, 2, 0);
+            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 4, SIZE_SYMBOLS + 2);
             modifier_symbols[i]->is_active = true;
         } else if (!mod_is_active && modifier_symbols[i]->is_active) {
-            move_object_y(modifier_symbols[i]->symbol, 0, 1);
-            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 0, SIZE_SYMBOLS + 2);
+            move_object_y(modifier_symbols[i]->symbol, 0, 2);
+            move_object_y(modifier_symbols[i]->selection_line, SIZE_SYMBOLS + 2, SIZE_SYMBOLS + 4);
             modifier_symbols[i]->is_active = false;
         }
     }
@@ -127,7 +127,7 @@ int zmk_widget_modifiers_init(struct zmk_widget_modifiers *widget, lv_obj_t *par
     for (int i = 0; i < NUM_SYMBOLS; i++) {
         modifier_symbols[i]->symbol = lv_img_create(widget->obj);
         // lv_obj_align(modifier_symbols[i]->symbol, LV_ALIGN_TOP_LEFT, 1 + (SIZE_SYMBOLS + 1) * i, 1);
-        lv_obj_align(modifier_symbols[i]->symbol, LV_ALIGN_BOTTOM_LEFT, 1 + (SIZE_SYMBOLS + 1) * i, -1);
+        lv_obj_align(modifier_symbols[i]->symbol, LV_ALIGN_BOTTOM_LEFT, 1 + (SIZE_SYMBOLS + 1) * i, 0);
         lv_img_set_src(modifier_symbols[i]->symbol, modifier_symbols[i]->symbol_dsc);
 
         modifier_symbols[i]->selection_line = lv_line_create(widget->obj);
