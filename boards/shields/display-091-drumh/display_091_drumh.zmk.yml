@@ -1,0 +1,7 @@
+file_format: "1"
+id: display_091_drumh
+name: display_091_drumh
+type: shield
+url: https://github.com/kawvin/zmk-config
+requires: 
+  - i2c_oled
