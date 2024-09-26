@@ -131,7 +131,7 @@ int zmk_widget_modifiers_init(struct zmk_widget_modifiers *widget, lv_obj_t *par
         lv_img_set_src(modifier_symbols[i]->symbol, modifier_symbols[i]->symbol_dsc);
 
         modifier_symbols[i]->selection_line = lv_line_create(widget->obj);
-        lv_line_set_points(modifier_symbols[i]->selection_line, selection_line_points, 1);
+        lv_line_set_points(modifier_symbols[i]->selection_line, selection_line_points, 2);
         lv_obj_add_style(modifier_symbols[i]->selection_line, &style_line, 0);
         lv_obj_align_to(modifier_symbols[i]->selection_line, modifier_symbols[i]->symbol, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 2);
     }
