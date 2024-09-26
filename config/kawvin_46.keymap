@@ -308,7 +308,7 @@
 &kp LWIN       &kp LALT  &lt 4 DEL  &lt 1 SPACE  &kp SPACE  &lt 5 BSPC  &kp RALT  &kp RCTRL
             >;
 
-            label = "Qwert";
+            label = "Qwerty";
 
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;

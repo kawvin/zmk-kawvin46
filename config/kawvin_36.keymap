@@ -229,7 +229,7 @@
                     &kp LCTRL  &kp LALT  &lt 2 DEL  &kp SPACE                                                                                        &kp ENTER  &kp BSPC  &kp RGUI   &kp RCTRL                        
 
             >;
-            label = "Qwert";
+            label = "Qwerty";
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             //sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
