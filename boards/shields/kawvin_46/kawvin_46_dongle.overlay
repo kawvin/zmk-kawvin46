@@ -6,12 +6,65 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 
+&pinctrl {
+    // Other pinctrl definitions for other hardware
+    i2c0_default: i2c0_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+        };
+    };
+
+    i2c0_sleep: i2c0_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            low-power-enable;
+        };
+    };
+};
+
+&i2c0 {
+	status = "okay";
+	//compatible = "nordic,nrf-twi";
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+    
+	oled: ssd1306@3c {
+        // 分辨率修改
+        width = <128>;
+		height = <32>;
+
+        // 0.91或0.96，使用以下
+        //compatible = "solomon,ssd1306fb";   //0.91   0.96
+        //segment-offset = <0>;   //0.91   0.96
+        //multiplex-ratio = <31>; //128*32
+        //com-sequential; //1.30注销本行
+        //label = "Dongle_DISPLAY";
+
+        // 1.30，使用以下
+        compatible = "sinowealth,sh1106";   //1.30
+        segment-offset = <2>;   //1.30
+		multiplex-ratio = <63>; //128*64
+        label = "Dongle_DISPLAY";
+
+		reg = <0x3c>;
+		page-offset = <0>;
+		display-offset = <0>;
+		segment-remap;
+		com-invdir;
+        inversion-on;   // 翻转颜色
+		prechargep = <0x22>;
+	};
+};
+
 / {
 
     chosen {
         zmk,kscan = &mock_kscan;
         zmk,matrix-transform = &default_transform;
-        //zephyr,display = &oled;
+        zephyr,display = &oled;
     };
 
     default_transform: keymap_transform_0 {
