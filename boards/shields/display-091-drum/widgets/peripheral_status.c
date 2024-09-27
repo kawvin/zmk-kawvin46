@@ -35,9 +35,6 @@ static void set_status_symbol(lv_obj_t *label, struct peripheral_status_state st
     lv_label_set_text(label, text);
 }
 
-static struct peripheral_status_state get_state(const zmk_event_t *_eh) {
-    return (struct peripheral_status_state){.connected = zmk_split_bt_peripheral_is_connected()};
-}
 static void output_status_update_cb(struct peripheral_status_state state) {
     struct zmk_widget_peripheral_status *widget;
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) { set_status_symbol(widget->obj, state); }
