@@ -6,7 +6,7 @@
 
 #include "custom_status_screen.h"
 #include "widgets/battery_status.h"
-// #include "widgets/peripheral_status.h"
+#include "widgets/peripheral_status.h"
 #include "widgets/modifiers.h"
 #include "widgets/bongo_drum.h"
 #include "widgets/layer_status.h"
