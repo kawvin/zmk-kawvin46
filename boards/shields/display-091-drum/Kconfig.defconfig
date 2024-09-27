@@ -1,10 +1,10 @@
 # Copyright (c) 2024 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-config SHIELD_DISPLAY_091_DRUMH
+config SHIELD_DISPLAY_091_DRUM
     bool "Enable 0.91 Drum widget for dongle"
 
-if SHIELD_DISPLAY_091_DRUMH
+if SHIELD_DISPLAY_091_DRUM
 
 choice ZMK_DISPLAY_STATUS_SCREEN
     default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
