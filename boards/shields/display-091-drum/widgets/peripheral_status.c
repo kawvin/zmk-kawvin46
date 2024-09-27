@@ -46,8 +46,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     draw_battery(canvas, state);
 
     // Draw output status
-    lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc,
-                        state->connected ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
+    lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc, state->connected ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
 
     // Rotate canvas
     rotate_canvas(canvas, cbuf);
@@ -78,8 +77,7 @@ static struct battery_status_state battery_status_get_state(const zmk_event_t *e
     };
 }
 
-ZMK_DISPLAY_WIDGET_LISTENER(widget_battery_status, struct battery_status_state,
-                            battery_status_update_cb, battery_status_get_state)
+ZMK_DISPLAY_WIDGET_LISTENER(widget_battery_status, struct battery_status_state, battery_status_update_cb, battery_status_get_state)
 
 ZMK_SUBSCRIPTION(widget_battery_status, zmk_battery_state_changed);
 #if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
