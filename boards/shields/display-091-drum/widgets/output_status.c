@@ -16,7 +16,10 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/events/usb_conn_state_changed.h>
 #include <zmk/usb.h>
 #include <zmk/ble.h>
+
+#include <zmk/events/wpm_state_changed.h>
 #include <zmk/endpoints.h>
+#include <zmk/wpm.h>
 
 #include "output_status.h"
 // #include "battery_status.h"
@@ -57,7 +60,7 @@ enum selection_line_state {
     selection_line_state_bt
 } current_selection_line_state;
 
-lv_point_t selection_line_points[] = { {127, 40}, {127, 50} }; // will be replaced with lv_point_precise_t 
+lv_point_t selection_line_points[] = { {100, 0}, {100, 30} }; // will be replaced with lv_point_precise_t 
 
 struct output_status_state {
     struct zmk_endpoint_instance selected_endpoint;

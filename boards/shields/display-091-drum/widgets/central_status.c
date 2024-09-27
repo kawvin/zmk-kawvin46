@@ -14,6 +14,10 @@
 #include "hid_indicators.h"
 #include <zmk/display/widgets/battery_status.h>
 
+#include <zmk/events/wpm_state_changed.h>
+#include <zmk/endpoints.h>
+#include <zmk/wpm.h>
+
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
