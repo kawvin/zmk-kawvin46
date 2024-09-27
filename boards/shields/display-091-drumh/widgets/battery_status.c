@@ -72,7 +72,8 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
     uint8_t level = state.level;
 
-    if (level > 0 || state.usb_present) {
+    // if (level > 0 || state.usb_present) {
+    if (level > 0) {
       lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
     } else {
        lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
@@ -100,7 +101,10 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
             lv_img_set_src(symbol, batterys_level[0]);
         }
     } else {
-        lv_img_set_src(symbol, batterys_level[10]);
+        #if !IS_ENABLED(CONFIG_ZMK_DONGLE_DISPLAY_DONGLE_BATTERY)
+            lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+            lv_img_set_src(symbol, batterys_level[10]);
+        #endif
     }
 }
 
@@ -173,7 +177,7 @@ int zmk_widget_peripheral_battery_status_init(struct zmk_widget_peripheral_batte
         //lv_obj_align(battery_widget_objects[i].battery_label, LV_ALIGN_LEFT_MID, initial_x_offset - i * 35, 0);
         // lv_obj_align(battery_label, LV_ALIGN_TOP_LEFT, i*9+3, 10);
         
-        //lv_obj_add_flag(image_canvas, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(image_canvas, LV_OBJ_FLAG_HIDDEN);
         // lv_obj_add_flag(battery_label, LV_OBJ_FLAG_HIDDEN);
 
         lv_img_set_src(image_canvas, batterys_level[11]);
