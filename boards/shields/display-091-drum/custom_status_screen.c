@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "widgets/status.h"
+#include "widgets/central_status.h"
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
