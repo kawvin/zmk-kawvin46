@@ -46,7 +46,7 @@ static void output_status_update_cb(struct peripheral_status_state state) {
 ZMK_DISPLAY_WIDGET_LISTENER(widget_peripheral_status, struct peripheral_status_state, output_status_update_cb, get_state)
 ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
 
-int zmk_widget_ky_peripheral_status_init(struct zmk_widget_peripheral_status *widget, lv_obj_t *parent) {
+int zmk_widget_peripheral_status_init(struct zmk_widget_peripheral_status *widget, lv_obj_t *parent) {
     widget->obj = lv_label_create(parent);
 
     sys_slist_append(&widgets, &widget->node);
@@ -55,6 +55,6 @@ int zmk_widget_ky_peripheral_status_init(struct zmk_widget_peripheral_status *wi
     return 0;
 }
 
-lv_obj_t *zmk_widget_ky_peripheral_status_obj(struct zmk_widget_peripheral_status *widget) {
+lv_obj_t *zmk_widget_peripheral_status_obj(struct zmk_widget_peripheral_status *widget) {
     return widget->obj;
 }
