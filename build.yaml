@@ -31,10 +31,10 @@ include:
     shield: kawvin_46_left display_091_drum
     cmake-args: -DCONFIG_ZMK_DISPLAY=y
     artifact-name: kawvin_46_LeftWithDrum
-  # - board: nice_nano_v2
-  #   shield: kawvin_46_right display_091_drum
-  #   cmake-args: -DCONFIG_ZMK_DISPLAY=y
-  #   artifact-name: kawvin_46_RightWithDrum
+  - board: nice_nano_v2
+    shield: kawvin_46_right display_091_drum
+    cmake-args: -DCONFIG_ZMK_DISPLAY=y
+    artifact-name: kawvin_46_RightWithDrum
 
   # - board: nice_nano_v2
   #   shield: kawvin_46_left

@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "peripheral_status.h": "c"
+        "peripheral_status.h": "c",
+        "custom_status_screen.h": "c",
+        "battery_status.h": "c",
+        "bongo_drum.h": "c"
     }
 }
