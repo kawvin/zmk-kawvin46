@@ -21,7 +21,7 @@ static struct zmk_widget_output_status output_status_widget;
 static struct zmk_widget_layer_status layer_status_widget;
 static struct zmk_widget_battery_status battery_status_widget;
 static struct zmk_widget_peripheral_battery_status peripheral_battery_status_widget;
-static struct zmk_widget_peripheral_status peripheral_status_widget;
+// static struct zmk_widget_peripheral_status peripheral_status_widget;
 static struct zmk_widget_modifiers modifiers_widget;
 static struct zmk_widget_bongo_drum bongo_drum_widget;
 
