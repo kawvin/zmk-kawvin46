@@ -55,8 +55,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     rotate_canvas(canvas, cbuf);
 }
 
-static void set_battery_status(struct zmk_widget_status *widget,
-                               struct battery_status_state state) {
+static void set_battery_status(struct zmk_widget_status *widget, struct battery_status_state state) {
 #if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
     widget->state.charging = state.usb_present;
 #endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
@@ -90,8 +89,7 @@ static struct peripheral_status_state get_state(const zmk_event_t *_eh) {
     return (struct peripheral_status_state){.connected = zmk_split_bt_peripheral_is_connected()};
 }
 
-static void set_connection_status(struct zmk_widget_status *widget,
-                                  struct peripheral_status_state state) {
+static void set_connection_status(struct zmk_widget_status *widget, struct peripheral_status_state state) {
     widget->state.connected = state.connected;
 
     draw_top(widget->obj, widget->cbuf, &widget->state);
