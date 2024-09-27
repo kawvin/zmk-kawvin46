@@ -144,7 +144,7 @@ static void set_status_symbol(lv_obj_t *widget, struct output_status_state state
         if (current_selection_line_state != selection_line_state_bt) {
             // move_object_x(selection_line, lv_obj_get_x(usb) - 1, lv_obj_get_x(bt) - 1);
             move_object_y(selection_line, lv_obj_get_y(usb) - 1, lv_obj_get_y(bt) - 1);
-            change_size_object(selection_line, 1, 18);
+            change_size_object(selection_line, 11, 18);
             current_selection_line_state = selection_line_state_bt;
         }
         break;
