@@ -33,9 +33,6 @@ lv_obj_t *zmk_display_status_screen() {
     lv_obj_t *screen;
 
     screen = lv_obj_create(NULL);
-    // 屏幕旋转90度
-    // LV_DISP_ROT_NONE, LV_DISP_ROT_90, LV_DISP_ROT_180, or LV_DISP_ROT_270
-    //lv_disp_set_rotation(NULL, LV_DISP_ROT_90);
 
     lv_style_init(&global_style);
     lv_style_set_text_font(&global_style, &lv_font_unscii_8);
@@ -45,14 +42,12 @@ lv_obj_t *zmk_display_status_screen() {
     
  
     // 修饰符
-    //zmk_widget_modifiers_init(&modifiers_widget, screen);
-    //lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
-    // lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_TOP_LEFT, 0, 0);
+    zmk_widget_modifiers_init(&modifiers_widget, screen);
+    lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
 
     // 层
     zmk_widget_layer_status_init(&layer_status_widget, screen);
     lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_TOP_LEFT, 33,0);
-    // lv_obj_align_to(zmk_widget_layer_status_obj(&layer_status_widget), zmk_widget_bongo_drum_obj(&bongo_drum_widget), LV_ALIGN_BOTTOM_LEFT, 0, 5);
 
     // 敲鼓动画
     zmk_widget_bongo_drum_init(&bongo_drum_widget, screen);
