@@ -73,9 +73,9 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     uint8_t level = state.level;
 
     if (level > 0 || state.usb_present) {
-      lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
     } else {
-       lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
     }
     if (!state.usb_present) {
         if (level > 95) {
@@ -115,9 +115,9 @@ static struct battery_state peripheral_battery_status_get_state(const zmk_event_
     return (struct battery_state){
         .source = ev->source + SOURCE_OFFSET,
         .level = ev->state_of_charge,
-// #if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
-//         .usb_present = zmk_usb_is_powered(),
-// #endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
+#if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
+        .usb_present = zmk_usb_is_powered(),
+#endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
     };
 }
 
