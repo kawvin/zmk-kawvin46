@@ -29,7 +29,8 @@ lv_style_t global_style;
 
 int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
-
+    lv_obj_set_size(widget->obj,128, 32);
+    
     lv_style_init(&global_style);
     lv_style_set_text_font(&global_style, &lv_font_unscii_8);
     lv_style_set_text_letter_space(&global_style, 1);
