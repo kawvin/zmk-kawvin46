@@ -72,12 +72,12 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
     uint8_t level = state.level;
 
-    // if (level > 0 || state.usb_present) {
-    //   lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    // } else {
-    //    lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    // }
-    // if (!state.usb_present) {
+    if (level > 0 || state.usb_present) {
+      lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    } else {
+       lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    }
+    if (!state.usb_present) {
         if (level > 95) {
             lv_img_set_src(symbol, batterys_level[9]);
         } else if (level > 85) {
@@ -99,9 +99,9 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
         } else {
             lv_img_set_src(symbol, batterys_level[0]);
         }
-    // } else {
-    //     lv_img_set_src(symbol, batterys_level[10]);
-    // }
+    } else {
+        lv_img_set_src(symbol, batterys_level[10]);
+    }
 }
 
 void battery_status_update_cb(struct battery_state state) {
@@ -115,10 +115,10 @@ static struct battery_state peripheral_battery_status_get_state(const zmk_event_
     return (struct battery_state){
         .source = ev->source + SOURCE_OFFSET,
         .level = ev->state_of_charge,
-#if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
-        .usb_present = zmk_usb_is_powered(),
-#endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
-    };
+// #if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
+//         .usb_present = zmk_usb_is_powered(),
+// #endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
+//     };
 }
 
 static struct battery_state central_battery_status_get_state(const zmk_event_t *eh) {
