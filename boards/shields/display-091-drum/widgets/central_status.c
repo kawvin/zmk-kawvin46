@@ -47,8 +47,8 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
 
     // 层
-    zmk_widget_layer_status_init(&layer_status_widget, widget->obj);
-    lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_TOP_LEFT, 33,0);
+    //zmk_widget_layer_status_init(&layer_status_widget, widget->obj);
+    //lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_TOP_LEFT, 33,0);
 
     // 敲鼓动画
     zmk_widget_bongo_drum_init(&bongo_drum_widget, widget->obj);
