@@ -115,9 +115,9 @@ static struct battery_state peripheral_battery_status_get_state(const zmk_event_
     return (struct battery_state){
         .source = ev->source + SOURCE_OFFSET,
         .level = ev->state_of_charge,
-#if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
-        .usb_present = zmk_usb_is_powered(),
-#endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
+// #if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
+//         .usb_present = zmk_usb_is_powered(),
+// #endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
     };
 }
 
@@ -173,7 +173,7 @@ int zmk_widget_peripheral_battery_status_init(struct zmk_widget_peripheral_batte
         //lv_obj_align(battery_widget_objects[i].battery_label, LV_ALIGN_LEFT_MID, initial_x_offset - i * 35, 0);
         // lv_obj_align(battery_label, LV_ALIGN_TOP_LEFT, i*9+3, 10);
         
-        lv_obj_add_flag(image_canvas, LV_OBJ_FLAG_HIDDEN);
+        // lv_obj_add_flag(image_canvas, LV_OBJ_FLAG_HIDDEN);
         // lv_obj_add_flag(battery_label, LV_OBJ_FLAG_HIDDEN);
 
         lv_img_set_src(image_canvas, batterys_level[11]);
