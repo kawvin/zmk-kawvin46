@@ -118,7 +118,7 @@ static struct battery_state peripheral_battery_status_get_state(const zmk_event_
 // #if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
 //         .usb_present = zmk_usb_is_powered(),
 // #endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
-//     };
+    };
 }
 
 static struct battery_state central_battery_status_get_state(const zmk_event_t *eh) {
