@@ -60,7 +60,7 @@ enum selection_line_state {
     selection_line_state_bt
 } current_selection_line_state;
 
-lv_point_t selection_line_points[] = { {126, -1}, {126, 12} }; // will be replaced with lv_point_precise_t 
+lv_point_t selection_line_points[] = { {10, -1}, {10, 12} }; // will be replaced with lv_point_precise_t 
 
 struct output_status_state {
     struct zmk_endpoint_instance selected_endpoint;
