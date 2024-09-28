@@ -43,16 +43,16 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     
  
     // 修饰符
-    //zmk_widget_modifiers_init(&modifiers_widget, widget->obj);
-    //lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
+    zmk_widget_modifiers_init(&modifiers_widget, widget->obj);
+    lv_obj_align(zmk_widget_modifiers_obj(&modifiers_widget), LV_ALIGN_BOTTOM_LEFT, 0, 0);
 
     // 层
-    //zmk_widget_layer_status_init(&layer_status_widget, widget->obj);
-    //lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_TOP_LEFT, 33,0);
+    zmk_widget_layer_status_init(&layer_status_widget, widget->obj);
+    lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_TOP_LEFT, 33,0);
 
     // 敲鼓动画
-    //zmk_widget_bongo_drum_init(&bongo_drum_widget, widget->obj);
-    //lv_obj_align(zmk_widget_bongo_drum_obj(&bongo_drum_widget), LV_ALIGN_TOP_LEFT, 80, 0);
+    zmk_widget_bongo_drum_init(&bongo_drum_widget, widget->obj);
+    lv_obj_align(zmk_widget_bongo_drum_obj(&bongo_drum_widget), LV_ALIGN_TOP_LEFT, 80, 0);
 
     // Caps_Num_Scroll_Lock
     //if IS_ENABLED(CONFIG_ZMK_HID_INDICATORS)
@@ -72,8 +72,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
     // 输入输出状态
     zmk_widget_output_status_init(&output_status_widget, widget->obj);
-    lv_obj_align(zmk_widget_output_status_obj(&output_status_widget), LV_ALIGN_TOP_LEFT, 20, 0);
-    // lv_obj_align(zmk_widget_output_status_obj(&output_status_widget), LV_ALIGN_TOP_LEFT, 110, 0);
+    lv_obj_align(zmk_widget_output_status_obj(&output_status_widget), LV_ALIGN_TOP_LEFT, 110, 0);
 
     return 0;
 }

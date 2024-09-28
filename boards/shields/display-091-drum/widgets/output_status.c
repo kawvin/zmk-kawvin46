@@ -60,7 +60,7 @@ enum selection_line_state {
     selection_line_state_bt
 } current_selection_line_state;
 
-lv_point_t selection_line_points[] = { {10, -1}, {10, 12} }; // will be replaced with lv_point_precise_t 
+lv_point_t selection_line_points[] = { {9, -1}, {9, 12} }; // will be replaced with lv_point_precise_t 
 
 struct output_status_state {
     struct zmk_endpoint_instance selected_endpoint;
@@ -192,7 +192,7 @@ int zmk_widget_output_status_init(struct zmk_widget_output_status *widget, lv_ob
     lv_obj_set_size(widget->obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
 
     lv_obj_t *usb = lv_img_create(widget->obj);
-    lv_obj_align(usb, LV_ALIGN_TOP_LEFT, 2-10, 1);
+    lv_obj_align(usb, LV_ALIGN_TOP_LEFT, 2, 1);
     lv_img_set_src(usb, &sym_usb);
 
     lv_obj_t *usb_hid_status = lv_img_create(widget->obj);
@@ -214,7 +214,7 @@ int zmk_widget_output_status_init(struct zmk_widget_output_status *widget, lv_ob
 
     lv_obj_t *selection_line;
     selection_line = lv_line_create(widget->obj);
-    lv_line_set_points(selection_line, selection_line_points, 2);
+    lv_line_set_points(selection_line, selection_line_points, 1);
     lv_obj_add_style(selection_line, &style_line, 0);
     lv_obj_align_to(selection_line, usb, LV_ALIGN_OUT_RIGHT_TOP, 1, -1);
  
