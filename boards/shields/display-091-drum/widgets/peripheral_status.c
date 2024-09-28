@@ -33,7 +33,7 @@ LV_IMG_DECLARE(symbol_wifi_icon);
 LV_IMG_DECLARE(symbol_ok_icon);
 LV_IMG_DECLARE(symbol_nok_icon);
 LV_IMG_DECLARE(symbol_charge_icon);
-LV_IMG_DECLARE(bamboo_icon_icon);
+LV_IMG_DECLARE(bamboo_icon);
 LV_IMG_DECLARE(battery00_icon);
 LV_IMG_DECLARE(battery10_icon);
 LV_IMG_DECLARE(battery20_icon);
@@ -191,7 +191,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
     lv_obj_t *art = lv_img_create(widget->obj);
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 32, 0);
-    lv_img_set_src(art, &bamboo_ico);
+    lv_img_set_src(art, &bamboo_icon);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
