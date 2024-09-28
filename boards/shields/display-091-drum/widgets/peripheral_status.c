@@ -29,29 +29,88 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
+LV_IMG_DECLARE(symbol_wifi);
+LV_IMG_DECLARE(symbol_ok);
+LV_IMG_DECLARE(symbol_nok);
+LV_IMG_DECLARE(symbol_nok);
+LV_IMG_DECLARE(symbol_charge);
+LV_IMG_DECLARE(battery00_icon);
+LV_IMG_DECLARE(battery10_icon);
+LV_IMG_DECLARE(battery20_icon);
+LV_IMG_DECLARE(battery30_icon);
+LV_IMG_DECLARE(battery40_icon);
+LV_IMG_DECLARE(battery50_icon);
+LV_IMG_DECLARE(battery60_icon);
+LV_IMG_DECLARE(battery70_icon);
+LV_IMG_DECLARE(battery80_icon);
+LV_IMG_DECLARE(battery90_icon);
+LV_IMG_DECLARE(batterycharge_icon);
+LV_IMG_DECLARE(disconnect_icon);
+
+const lv_img_dsc_t *batterys_level[] = {
+    &battery00_icon,
+    &battery10_icon,
+    &battery20_icon,
+    &battery30_icon,
+    &battery40_icon,
+    &battery50_icon,
+    &battery60_icon,
+    &battery70_icon,
+    &battery80_icon,
+    &battery90_icon,
+    &batterycharge_icon,
+    &disconnect_icon,
+};
+
+enum peripheral_symbol {
+    peripheral_symbol_wifi,
+    peripheral_symbol_wifi_status,
+    peripheral_symbol_charge,
+    peripheral_symbol_bt_status,
+    peripheral_symbol_selection_line
+};
+
 struct peripheral_status_state {
     bool connected;
 };
 
-static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_state *state) {
-    lv_obj_t *canvas = lv_obj_get_child(widget, 0);
-
-    lv_draw_label_dsc_t label_dsc;
-    init_label_dsc(&label_dsc, LVGL_FOREGROUND, &lv_font_montserrat_12, LV_TEXT_ALIGN_RIGHT);
-    lv_draw_rect_dsc_t rect_black_dsc;
-    init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
-
-    // Fill background
-    lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
-
-    // Draw battery
-    draw_battery(canvas, state);
-
-    // Draw output status
-    lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc, state->connected ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
-
-    // Rotate canvas
-    //rotate_canvas(canvas, cbuf);
+static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
+    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
+    lv_obj_t *symbol_charge = lv_obj_get_child(widget, peripheral_symbol_charge);
+    // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
+    // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
+    uint8_t level = state.level;
+    // if (level > 0 || state.usb_present) {
+    //     lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    // } else {
+        // lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    // }
+    if (!state.usb_present) {
+        lv_obj_add_flag(symbol_charge, LV_OBJ_FLAG_HIDDEN);
+        if (level > 95) {
+            lv_img_set_src(symbol, batterys_level[9]);
+        } else if (level > 85) {
+            lv_img_set_src(symbol, batterys_level[8]);
+        } else if (level > 75) {
+            lv_img_set_src(symbol, batterys_level[7]);
+        } else if (level > 65) {
+            lv_img_set_src(symbol, batterys_level[6]);
+        } else if (level > 55) {
+            lv_img_set_src(symbol, batterys_level[5]);
+        } else if (level > 45) {
+            lv_img_set_src(symbol, batterys_level[4]);
+        } else if (level > 35) {
+            lv_img_set_src(symbol, batterys_level[3]);
+        } else if (level > 25) {
+            lv_img_set_src(symbol, batterys_level[2]);
+        } else if (level > 15) {
+            lv_img_set_src(symbol, batterys_level[1]);
+        } else {
+            lv_img_set_src(symbol, batterys_level[0]);
+        }
+    } else {
+        lv_obj_clear_flag(symbol_charge, LV_OBJ_FLAG_HIDDEN);
+    }
 }
 
 static void set_battery_status(struct zmk_widget_status *widget, struct battery_status_state state) {
@@ -61,7 +120,7 @@ static void set_battery_status(struct zmk_widget_status *widget, struct battery_
 
     widget->state.battery = state.level;
 
-    draw_top(widget->obj, widget->cbuf, &widget->state);
+    set_battery_symbol(widget->obj, &widget->state);
 }
 
 static void battery_status_update_cb(struct battery_status_state state) {
@@ -91,7 +150,13 @@ static struct peripheral_status_state get_state(const zmk_event_t *_eh) {
 static void set_connection_status(struct zmk_widget_status *widget, struct peripheral_status_state state) {
     widget->state.connected = state.connected;
 
-    draw_top(widget->obj, widget->cbuf, &widget->state);
+    lv_obj_t *wifi_status = lv_obj_get_child(widget, peripheral_symbol_wifi_status);
+    if (state.connected){
+        lv_img_set_src(wifi_status, &symbol_ok);
+    } else {
+        lv_img_set_src(wifi_status, &symbol_nok);
+    }
+
 }
 
 static void output_status_update_cb(struct peripheral_status_state state) {
@@ -106,14 +171,27 @@ ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
 int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
     lv_obj_set_size(widget->obj, 128, 32);
-    lv_obj_t *top = lv_canvas_create(widget->obj);
-    lv_obj_align(top, LV_ALIGN_TOP_LEFT, 4, 2);
-    lv_canvas_set_buffer(top, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
 
-    // lv_obj_t *art = lv_img_create(widget->obj);
-    //bool random = sys_rand32_get() & 1;
-    //lv_img_set_src(art, random ? &balloon : &mountain);
-    // lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
+    lv_obj_t *battery_status = lv_img_create(widget->obj);
+    lv_obj_align_to(battery_status, wifi, LV_ALIGN_TOP_LEFT, 1, 1);
+    lv_img_set_src(art, batterys_level[0]);
+
+    lv_obj_t *battery_charge = lv_img_create(widget->obj);
+    lv_obj_align_to(battery_charge, battery_status, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 2);
+    lv_img_set_src(art, &symbol_charge);
+    lv_obj_add_flag(battery_charge, LV_OBJ_FLAG_HIDDEN);
+
+    lv_obj_t *wifi = lv_img_create(widget->obj);
+    lv_obj_align(wifi, LV_ALIGN_TOP_RIGHT, -1, 1);
+    lv_img_set_src(wifi, &symbol_wifi_ico);
+
+    lv_obj_t *wifi_status = lv_img_create(widget->obj);
+    lv_obj_align_to(wifi_status, wifi, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 1);
+    lv_img_set_src(wifi, &symbol_nok);
+
+    lv_obj_t *art = lv_img_create(widget->obj);
+    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 32, 0);
+    lv_img_set_src(art, &bamboo_icon);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
