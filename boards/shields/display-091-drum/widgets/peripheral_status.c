@@ -65,9 +65,8 @@ const lv_img_dsc_t *batterys_level[] = {
 enum peripheral_symbol {
     peripheral_symbol_wifi,
     peripheral_symbol_wifi_status,
+    peripheral_symbol_battery_status,
     peripheral_symbol_charge,
-    peripheral_symbol_bt_status,
-    peripheral_symbol_selection_line
 };
 
 struct peripheral_status_state {
@@ -75,7 +74,7 @@ struct peripheral_status_state {
 };
 
 static void set_battery_symbol(lv_obj_t *widget, struct battery_status_state state) {
-    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
+    lv_obj_t *symbol = lv_obj_get_child(widget, peripheral_symbol_battery_status );
     lv_obj_t *symbol_charge = lv_obj_get_child(widget, peripheral_symbol_charge);
     // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
     // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
