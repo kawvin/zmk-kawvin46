@@ -173,13 +173,13 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_set_size(widget->obj, 128, 32);
 
     lv_obj_t *battery_status = lv_img_create(widget->obj);
-    lv_obj_align(battery_status, LV_ALIGN_TOP_LEFT, 1, 1);
+    lv_obj_align(battery_status, LV_ALIGN_TOP_LEFT, 0, 1);
     lv_img_set_src(battery_status, batterys_level[0]);
 
     lv_obj_t *battery_charge = lv_img_create(widget->obj);
     lv_obj_align_to(battery_charge, battery_status, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 2);
     lv_img_set_src(battery_charge, &symbol_charge_icon);
-    lv_obj_add_flag(battery_charge, LV_OBJ_FLAG_HIDDEN);
+    // lv_obj_add_flag(battery_charge, LV_OBJ_FLAG_HIDDEN);
 
     lv_obj_t *wifi = lv_img_create(widget->obj);
     lv_obj_align(wifi, LV_ALIGN_TOP_RIGHT, -1, 1);
@@ -190,7 +190,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_img_set_src(wifi, &symbol_nok_icon);
 
     lv_obj_t *art = lv_img_create(widget->obj);
-    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 32, 0);
+    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 15, 0);
     lv_img_set_src(art, &bamboo_icon);
 
     sys_slist_append(&widgets, &widget->node);
