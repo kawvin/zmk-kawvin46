@@ -73,17 +73,17 @@ struct peripheral_status_state {
     bool connected;
 };
 
-static void set_battery_symbol(lv_obj_t *widget, struct battery_status_state state) {
+static void set_battery_status(struct zmk_widget_status *widget, struct battery_status_state state) {
+#if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
+    widget->state.charging = state.usb_present;
+#endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
+
+    widget->state.battery = state.level;
+
+    // set_battery_symbol(widget->obj, &widget->state);
     lv_obj_t *symbol = lv_obj_get_child(widget, peripheral_symbol_battery_status );
     lv_obj_t *symbol_charge = lv_obj_get_child(widget, peripheral_symbol_charge);
-    // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
-    // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
     uint8_t level = state.level;
-    // if (level > 0 || state.usb_present) {
-    //     lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    // } else {
-        // lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    // }
     if (!state.usb_present) {
         lv_obj_add_flag(symbol_charge, LV_OBJ_FLAG_HIDDEN);
         if (level > 95) {
@@ -110,16 +110,6 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_status_state sta
     } else {
         lv_obj_clear_flag(symbol_charge, LV_OBJ_FLAG_HIDDEN);
     }
-}
-
-static void set_battery_status(struct zmk_widget_status *widget, struct battery_status_state state) {
-#if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
-    widget->state.charging = state.usb_present;
-#endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
-
-    widget->state.battery = state.level;
-
-    set_battery_symbol(widget->obj, &widget->state);
 }
 
 static void battery_status_update_cb(struct battery_status_state state) {
