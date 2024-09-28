@@ -27,6 +27,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include "peripheral_status.h"
 
 #define SRC(array) (const void **)array, sizeof(array) / sizeof(lv_img_dsc_t *)
+#define ANIMATION_SPEED_FAST 200
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
