@@ -18,7 +18,14 @@ config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
     select LV_USE_ANIMATION
     select LV_USE_LINE 
     select LV_FONT_UNSCII_8
+
+if !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
+
+config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+    select LV_FONT_MONTSERRAT_16
     select ZMK_WPM
+
+endif # !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
 
 config ZMK_DONGLE_DISPLAY_DONGLE_BATTERY
     bool "Show also the battery level of the dongle"
