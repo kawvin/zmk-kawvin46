@@ -26,6 +26,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #include "peripheral_status.h"
 
+#define SRC(array) (const void **)array, sizeof(array) / sizeof(lv_img_dsc_t *)
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
@@ -47,6 +48,19 @@ LV_IMG_DECLARE(battery80_icon);
 LV_IMG_DECLARE(battery90_icon);
 LV_IMG_DECLARE(batterycharge_icon);
 LV_IMG_DECLARE(disconnect_icon);
+LV_IMG_DECLARE(dance01_icon);
+LV_IMG_DECLARE(dance02_icon);
+LV_IMG_DECLARE(dance03_icon);
+LV_IMG_DECLARE(dance04_icon);
+LV_IMG_DECLARE(dance05_icon);
+LV_IMG_DECLARE(dance06_icon);
+LV_IMG_DECLARE(dance07_icon);
+LV_IMG_DECLARE(dance08_icon);
+LV_IMG_DECLARE(dance09_icon);
+LV_IMG_DECLARE(dance10_icon);
+LV_IMG_DECLARE(dance11_icon);
+LV_IMG_DECLARE(dance12_icon);
+LV_IMG_DECLARE(dance13_icon);
 
 const lv_img_dsc_t *batterys_level[] = {
     &battery00_icon,
@@ -61,6 +75,22 @@ const lv_img_dsc_t *batterys_level[] = {
     &battery90_icon,
     &batterycharge_icon,
     &disconnect_icon,
+};
+
+const lv_img_dsc_t *dance_images[] = {
+    &dance01_icon,
+    &dance02_icon,
+    &dance03_icon,
+    &dance04_icon,
+    &dance05_icon,
+    &dance06_icon,
+    &dance07_icon,
+    &dance08_icon,
+    &dance09_icon,
+    &dance10_icon,
+    &dance11_icon,
+    &dance12_icon,
+    &dance13_icon,
 };
 
 enum peripheral_symbol {
@@ -191,10 +221,19 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align_to(wifi_status, wifi, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
     lv_img_set_src(wifi_status, &symbol_nok_icon);
 
+    // lv_obj_t *art = lv_img_create(widget->obj);
+    // lv_obj_align(art, LV_ALIGN_TOP_LEFT, 15, 0);
+    // // lv_img_set_src(art, &bamboo_icon);
+    // lv_img_set_src(art, &tiandao_icon);
+
+    //跳舞动画
     lv_obj_t *art = lv_img_create(widget->obj);
-    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 15, 0);
-    // lv_img_set_src(art, &bamboo_icon);
-    lv_img_set_src(art, &tiandao_icon);
+    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 40, 0);
+    lv_img_set_src(art, dance_images[0]);
+    lv_animimg_set_src(art, SRC(dance_images));
+    lv_animimg_set_duration(art, ANIMATION_SPEED_FAST);
+    lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);  // count设置为LV_ANIM_REPEAT_INFINITE时表示一直循环显示
+    lv_animimg_start(art);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();

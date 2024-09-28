@@ -26,6 +26,7 @@ if(CONFIG_ZMK_DISPLAY AND CONFIG_ZMK_DISPLAY_STATUS_SCREEN_CUSTOM )
     else()
         zephyr_library_sources(widgets/peripheral_status_sym.c)
         zephyr_library_sources(widgets/peripheral_status.c)
+        zephyr_library_sources(widgets/dance_images.c)
     endif()
 
 endif()
