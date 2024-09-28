@@ -20,9 +20,9 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/usb.h>
 #include <zmk/ble.h>
 
-#include <zmk/events/wpm_state_changed.h>
-#include <zmk/endpoints.h>
-#include <zmk/wpm.h>
+// #include <zmk/events/wpm_state_changed.h>
+// #include <zmk/endpoints.h>
+// #include <zmk/wpm.h>
 
 #include "peripheral_status.h"
 

@@ -116,9 +116,9 @@ static struct battery_state peripheral_battery_status_get_state(const zmk_event_
         .source = ev->source + SOURCE_OFFSET,
         // .source = ev->source + 1,
         .level = ev->state_of_charge,
-//#if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
-//        .usb_present = zmk_usb_is_powered(),
-//#endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
+#if IS_ENABLED(CONFIG_USB_DEVICE_STACK)
+        .usb_present = zmk_usb_is_powered(),
+#endif /* IS_ENABLED(CONFIG_USB_DEVICE_STACK) */
     };
 }
 
