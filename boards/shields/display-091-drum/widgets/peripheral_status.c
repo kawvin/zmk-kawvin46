@@ -63,10 +63,11 @@ const lv_img_dsc_t *batterys_level[] = {
 };
 
 enum peripheral_symbol {
-    peripheral_symbol_wifi,
-    peripheral_symbol_wifi_status,
     peripheral_symbol_battery_status,
     peripheral_symbol_charge,
+    peripheral_symbol_wifi,
+    peripheral_symbol_wifi_status,
+    peripheral_symbol_art,
 };
 
 struct peripheral_status_state {
@@ -187,7 +188,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
     lv_obj_t *wifi_status = lv_img_create(widget->obj);
     lv_obj_align_to(wifi_status, wifi, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 1);
-    lv_img_set_src(wifi, &symbol_nok_icon);
+    lv_img_set_src(wifi_status, &symbol_nok_icon);
 
     lv_obj_t *art = lv_img_create(widget->obj);
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 15, 0);
