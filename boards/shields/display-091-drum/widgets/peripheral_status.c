@@ -52,7 +52,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc, state->connected ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
 
     // Rotate canvas
-    rotate_canvas(canvas, cbuf);
+    // rotate_canvas(canvas, cbuf);
 }
 
 static void set_battery_status(struct zmk_widget_status *widget, struct battery_status_state state) {
