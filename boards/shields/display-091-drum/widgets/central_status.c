@@ -60,11 +60,11 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     //lv_obj_align_to(zmk_widget_hid_indicators_obj(&hid_indicators_widget), LV_ALIGN_TOP_LEFT, 33,9);
     //#endif
 
-    // 电池电量
-    zmk_widget_battery_status_init(&battery_status_widget, widget->obj);
-    lv_obj_align(zmk_widget_battery_status_obj(&battery_status_widget), LV_ALIGN_TOP_LEFT, 2, 2);
+    // 电池电量(删除)
+    //zmk_widget_battery_status_init(&battery_status_widget, widget->obj);
+    //lv_obj_align(zmk_widget_battery_status_obj(&battery_status_widget), LV_ALIGN_TOP_LEFT, 2, 2);
 
-
+// 电池电量
 // #if IS_ENABLED(CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERIPHERAL)
     zmk_widget_peripheral_battery_status_init(&peripheral_battery_status_widget, widget->obj);
     lv_obj_align(zmk_widget_peripheral_battery_status_obj(&peripheral_battery_status_widget), LV_ALIGN_TOP_LEFT, 0, 0);
