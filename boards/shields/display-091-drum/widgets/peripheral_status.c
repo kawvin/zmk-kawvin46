@@ -29,11 +29,11 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
-LV_IMG_DECLARE(symbol_wifi);
-LV_IMG_DECLARE(symbol_ok);
-LV_IMG_DECLARE(symbol_nok);
-LV_IMG_DECLARE(symbol_nok);
-LV_IMG_DECLARE(symbol_charge);
+LV_IMG_DECLARE(symbol_wifi_icon);
+LV_IMG_DECLARE(symbol_ok_icon);
+LV_IMG_DECLARE(symbol_nok_icon);
+LV_IMG_DECLARE(symbol_charge_icon);
+LV_IMG_DECLARE(bamboo_icon_icon);
 LV_IMG_DECLARE(battery00_icon);
 LV_IMG_DECLARE(battery10_icon);
 LV_IMG_DECLARE(battery20_icon);
@@ -150,7 +150,7 @@ static struct peripheral_status_state get_state(const zmk_event_t *_eh) {
 static void set_connection_status(struct zmk_widget_status *widget, struct peripheral_status_state state) {
     widget->state.connected = state.connected;
 
-    lv_obj_t *wifi_status = lv_obj_get_child(widget, peripheral_symbol_wifi_status);
+    lv_obj_t *wifi_status = lv_obj_get_child(widget->obj, peripheral_symbol_wifi_status);
     if (state.connected){
         lv_img_set_src(wifi_status, &symbol_ok);
     } else {
@@ -173,12 +173,12 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_set_size(widget->obj, 128, 32);
 
     lv_obj_t *battery_status = lv_img_create(widget->obj);
-    lv_obj_align_to(battery_status, wifi, LV_ALIGN_TOP_LEFT, 1, 1);
-    lv_img_set_src(art, batterys_level[0]);
+    lv_obj_align(battery_status, LV_ALIGN_TOP_LEFT, 1, 1);
+    lv_img_set_src(battery_status, batterys_level[0]);
 
     lv_obj_t *battery_charge = lv_img_create(widget->obj);
     lv_obj_align_to(battery_charge, battery_status, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 2);
-    lv_img_set_src(art, &symbol_charge);
+    lv_img_set_src(battery_charge, &symbol_charge);
     lv_obj_add_flag(battery_charge, LV_OBJ_FLAG_HIDDEN);
 
     lv_obj_t *wifi = lv_img_create(widget->obj);
