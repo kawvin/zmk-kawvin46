@@ -74,7 +74,7 @@ struct peripheral_status_state {
     bool connected;
 };
 
-static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
+static void set_battery_symbol(lv_obj_t *widget, struct battery_status_state state) {
     lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
     lv_obj_t *symbol_charge = lv_obj_get_child(widget, peripheral_symbol_charge);
     // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
