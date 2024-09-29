@@ -52,7 +52,7 @@
         // 0.91或0.96，使用以下
         compatible = "solomon,ssd1306fb";   //0.91   0.96
         segment-offset = <0>;   //0.91   0.96
-        multiplex-ratio = <31>; //72*40
+        multiplex-ratio = <63>; //72*40
         com-sequential; //1.30注销本行
         
         // 1.30，使用以下
