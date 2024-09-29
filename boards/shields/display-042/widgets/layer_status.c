@@ -128,7 +128,7 @@ ZMK_SUBSCRIPTION(widget_layer_status, zmk_layer_state_changed);
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
     widget->obj = lv_label_create(parent);
-    lv_obj_set_size(widget->obj, 72, 24);
+    lv_obj_set_size(widget->obj, 72, 20);
     // lv_obj_align(widget->obj, LV_ALIGN_TOP_LEFT, 0, 0);
     sys_slist_append(&widgets, &widget->node);
 
