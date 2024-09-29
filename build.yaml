@@ -18,59 +18,59 @@
 #
 ---
 include:
-# 一、带Dongle（0.91横向_Drum），左右无屏
-  - board: nice_nano_v2
-    shield: kawvin_46_dongle display_091_drumh
-    cmake-args: -DCONFIG_ZMK_DISPLAY=y
-    artifact-name: kawvin46_M1_1_DongleWithDrumH
-  - board: nice_nano_v2
-    shield: kawvin_46_left
-    cmake-args: -DCONFIG_ZMK_DISPLAY=n -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-    artifact-name: kawvin46_M1_2_LeftNone
-  - board: nice_nano_v2
-    shield: kawvin_46_right
-    cmake-args: -DCONFIG_ZMK_DISPLAY=n 
-    artifact-name: kawvin46_M1_3_RightNone
+# # 一、带Dongle（0.91横向_Drum），左右无屏
+#   - board: nice_nano_v2
+#     shield: kawvin_46_dongle display_091_drumh
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=y
+#     artifact-name: kawvin46_M1_1_DongleWithDrumH
+#   - board: nice_nano_v2
+#     shield: kawvin_46_left
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=n -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+#     artifact-name: kawvin46_M1_2_LeftNone
+#   - board: nice_nano_v2
+#     shield: kawvin_46_right
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=n 
+#     artifact-name: kawvin46_M1_3_RightNone
 
   
-# 二、带Dongle（无屏），左右带默认屏
-  - board: nice_nano_v2
-    shield: kawvin_46_dongle
-    cmake-args: -DCONFIG_ZMK_DISPLAY=n
-    artifact-name: kawvin46_M2_1_Dongle
-  - board: nice_nano_v2
-    shield: kawvin_46_left
-    cmake-args: -DCONFIG_ZMK_DISPLAY=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-    artifact-name: kawvin46_M2_2_LeftWithDefault
-  - board: nice_nano_v2
-    shield: kawvin_46_right
-    cmake-args: -DCONFIG_ZMK_DISPLAY=y 
-    artifact-name: kawvin46_M2_3_RightWithDefault
+# # 二、带Dongle（无屏），左右带默认屏
+#   - board: nice_nano_v2
+#     shield: kawvin_46_dongle
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=n
+#     artifact-name: kawvin46_M2_1_Dongle
+#   - board: nice_nano_v2
+#     shield: kawvin_46_left
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+#     artifact-name: kawvin46_M2_2_LeftWithDefault
+#   - board: nice_nano_v2
+#     shield: kawvin_46_right
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=y 
+#     artifact-name: kawvin46_M2_3_RightWithDefault
 
 
-# 三、无Dongle，左右带0.91竖向_Drum
-  - board: nice_nano_v2
-    shield: kawvin_46_left display_091_drum
-    cmake-args: -DCONFIG_ZMK_DISPLAY=y
-    artifact-name: kawvin46_M3_1_LeftWithDrum_central
+# # 三、无Dongle，左右带0.91竖向_Drum
+#   - board: nice_nano_v2
+#     shield: kawvin_46_left display_091_drum
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=y
+#     artifact-name: kawvin46_M3_1_LeftWithDrum_central
   - board: nice_nano_v2
     shield: kawvin_46_right display_091_drum
     cmake-args: -DCONFIG_ZMK_DISPLAY=y
     artifact-name: kawvin46_M3_2_RightWithDrum
 
 
-# 四、无Dongle，左右带默认屏
-  - board: nice_nano_v2
-    shield: kawvin_46_left
-    cmake-args: -DCONFIG_ZMK_DISPLAY=y
-    artifact-name: kawvin46_M4_1_LeftWithDefault_central
-  - board: nice_nano_v2
-    shield: kawvin_46_right
-    cmake-args: -DCONFIG_ZMK_DISPLAY=y
-    artifact-name: kawvin46_M4_2_RightWithDefault
+# # 四、无Dongle，左右带默认屏
+#   - board: nice_nano_v2
+#     shield: kawvin_46_left
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=y
+#     artifact-name: kawvin46_M4_1_LeftWithDefault_central
+#   - board: nice_nano_v2
+#     shield: kawvin_46_right
+#     cmake-args: -DCONFIG_ZMK_DISPLAY=y
+#     artifact-name: kawvin46_M4_2_RightWithDefault
 
 
-# 五、重置固件
-  - board: nice_nano_v2
-    shield: settings_reset
-    artifact-name: kawvin46_M5_settings_reset
+# # 五、重置固件
+#   - board: nice_nano_v2
+#     shield: settings_reset
+#     artifact-name: kawvin46_M5_settings_reset

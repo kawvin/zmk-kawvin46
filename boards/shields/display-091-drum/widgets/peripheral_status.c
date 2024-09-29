@@ -36,6 +36,7 @@ LV_IMG_DECLARE(symbol_nok_icon);
 LV_IMG_DECLARE(symbol_charge_icon);
 LV_IMG_DECLARE(bamboo_icon);
 LV_IMG_DECLARE(tiandao_icon);
+LV_IMG_DECLARE(slience_icon);
 LV_IMG_DECLARE(battery00_icon);
 LV_IMG_DECLARE(battery10_icon);
 LV_IMG_DECLARE(battery20_icon);
@@ -221,26 +222,24 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align_to(wifi_status, wifi, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);
     lv_img_set_src(wifi_status, &symbol_nok_icon);
 
-    // lv_obj_t *art = lv_img_create(widget->obj);
-    // lv_obj_align(art, LV_ALIGN_TOP_LEFT, 15, 0);
-    // // lv_img_set_src(art, &bamboo_icon);
-    // lv_img_set_src(art, &tiandao_icon);
-
-    //跳舞动画
-    // lv_obj_t *animimg1 = lv_animimg_create(lv_scr_act()); //动画1
-    lv_obj_t *animimg1 = lv_animimg_create(widget->obj); //动画1
-    lv_obj_center(animimg1); //居中
-    // lv_animimg_set_src(animimg1, (lv_img_decoder_t**)my_anim_imgs,MAX_IMGS_NUM  );
-    lv_animimg_set_src(animimg1, SRC(dance_images));
-    lv_animimg_set_duration(animimg1,600);
-    lv_animimg_set_repeat_count(animimg1,LV_ANIM_REPEAT_INFINITE);
-    lv_animimg_start(animimg1 );
-
+    // 静态图片
+    lv_obj_t *art = lv_img_create(widget->obj);
     // lv_obj_align(art, LV_ALIGN_TOP_LEFT, 40, 0);
-    // lv_img_set_src(art, dance_images[0]);
-    // lv_animimg_set_src(art, SRC(dance_images));
-    // lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);  // count设置为LV_ANIM_REPEAT_INFINITE时表示一直循环显示
-    // lv_animimg_start(art);
+    lv_obj_center(art); //居中
+    // lv_img_set_src(art, &bamboo_icon);
+    // lv_img_set_src(art, &tiandao_icon);
+    lv_img_set_src(art, &slience_icon);
+
+    // //跳舞动画
+    // // lv_obj_t *animimg1 = lv_animimg_create(lv_scr_act()); //动画1
+    // lv_obj_t *animimg1 = lv_animimg_create(widget->obj); //动画1
+    //  // lv_obj_align(animimg1, LV_ALIGN_TOP_LEFT, 15, 0);
+    // lv_obj_center(animimg1); //居中
+    // // lv_animimg_set_src(animimg1, (lv_img_decoder_t**)my_anim_imgs,MAX_IMGS_NUM  );
+    // lv_animimg_set_src(animimg1, SRC(dance_images));
+    // lv_animimg_set_duration(animimg1,900);
+    // lv_animimg_set_repeat_count(animimg1,LV_ANIM_REPEAT_INFINITE);  // count设置为LV_ANIM_REPEAT_INFINITE时表示一直循环显示
+    // lv_animimg_start(animimg1 );
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
