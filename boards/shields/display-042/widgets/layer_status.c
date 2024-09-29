@@ -78,20 +78,12 @@ enum layers_symbol {
 
 static void set_layer_symbol(lv_obj_t *label, struct layer_status_state state) {
 
-    // 设置标签的旋转角度
-    // lv_obj_set_style_transform_angle(label, LV_PART_MAIN, LV_STATE_DEFAULT, 900);
-    
-    // 设置标签的中心点，旋转将围绕这个点进行
-    // lv_obj_set_style_local_transform_origin(label, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_TRANSFORM_ORIGIN_CENTER);
- 
-    // 设置标签的位置
-    // lv_obj_set_pos(label, 0, 0); // 根据需要调整位置
 
     if (state.label == NULL) {
         char text[7] = {};
 
         sprintf(text, "%i", state.index);
-
+        
         lv_label_set_text(label, text);
     } else {
         char text[13] = {};
@@ -128,9 +120,10 @@ ZMK_SUBSCRIPTION(widget_layer_status, zmk_layer_state_changed);
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent) {
     widget->obj = lv_label_create(parent);
-    lv_obj_set_size(widget->obj, 72, 18);
-    // lv_obj_align(widget->obj, LV_ALIGN_TOP_LEFT, 0, 0);
-    lv_obj_align(widget->obj, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_size(widget->obj,  LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+    lv_obj_align(widget->obj, LV_ALIGN_TOP_LEFT, 0, 0);
+    // lv_obj_set_size(widget->obj, 72, 18);
+    // lv_obj_align(widget->obj, LV_ALIGN_CENTER, 0, 0);
     
     sys_slist_append(&widgets, &widget->node);
 
