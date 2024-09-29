@@ -27,7 +27,6 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include "peripheral_status.h"
 
 #define SRC(array) (const void **)array, sizeof(array) / sizeof(lv_img_dsc_t *)
-#define ANIMATION_SPEED_FAST 200
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
@@ -228,13 +227,20 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     // lv_img_set_src(art, &tiandao_icon);
 
     //跳舞动画
-    lv_obj_t *art = lv_img_create(widget->obj);
-    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 40, 0);
-    lv_img_set_src(art, dance_images[0]);
-    lv_animimg_set_src(art, SRC(dance_images));
-    lv_animimg_set_duration(art, ANIMATION_SPEED_FAST);
-    lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);  // count设置为LV_ANIM_REPEAT_INFINITE时表示一直循环显示
-    lv_animimg_start(art);
+    // lv_obj_t *animimg1 = lv_animimg_create(lv_scr_act()); //动画1
+    lv_obj_t *animimg1 = lv_animimg_create(widget->obj); //动画1
+    lv_obj_center(animimg1); //居中
+    // lv_animimg_set_src(animimg1, (lv_img_decoder_t**)my_anim_imgs,MAX_IMGS_NUM  );
+    lv_animimg_set_src(animimg1, SRC(dance_images));
+    lv_animimg_set_duration(animimg1,300);
+    lv_animimg_set_repeat_count(animimg1,LV_ANIM_REPEAT_INFINITE);
+    lv_animimg_start(animimg1 );
+
+    // lv_obj_align(art, LV_ALIGN_TOP_LEFT, 40, 0);
+    // lv_img_set_src(art, dance_images[0]);
+    // lv_animimg_set_src(art, SRC(dance_images));
+    // lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);  // count设置为LV_ANIM_REPEAT_INFINITE时表示一直循环显示
+    // lv_animimg_start(art);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
