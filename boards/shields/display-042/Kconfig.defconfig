@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 config SHIELD_DISPLAY_042
-    bool "Enable 0.91 Drum widget for dongle"
+    bool "Enable 0.42 OLED"
 
 if SHIELD_DISPLAY_042
 
