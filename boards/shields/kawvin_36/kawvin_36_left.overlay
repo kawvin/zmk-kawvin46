@@ -62,8 +62,8 @@
         
 		reg = <0x3c>;
 		label = "LEFT_DISPLAY";
-		page-offset = <40>;
-		display-offset = <24>;
+		page-offset = <14>;
+		display-offset = <30>;
 		segment-remap;
 		com-invdir;
         inversion-on;   // 翻转颜色
