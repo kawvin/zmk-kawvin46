@@ -1,0 +1,97 @@
+/*
+ * Copyright (c) 2023 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+&pinctrl {
+    // Other pinctrl definitions for other hardware
+    i2c0_default: i2c0_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+        };
+    };
+
+    i2c0_sleep: i2c0_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            low-power-enable;
+        };
+    };
+};
+
+&i2c0 {
+	status = "okay";
+	//compatible = "nordic,nrf-twi";
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+    
+	oled: ssd1306@3c {
+        // 分辨率修改
+        width = <128>;
+		height = <32>;
+
+        // 0.91或0.96，使用以下
+        compatible = "solomon,ssd1306fb";   //0.91   0.96
+        segment-offset = <0>;   //0.91   0.96
+        multiplex-ratio = <31>; //128*32
+        com-sequential; //1.30注销本行
+        label = "Dongle_DISPLAY";
+
+        // 1.30，使用以下
+        //compatible = "sinowealth,sh1106";   //1.30
+        //segment-offset = <2>;   //1.30
+		//multiplex-ratio = <63>; //128*64
+        //label = "Dongle_DISPLAY";
+
+		reg = <0x3c>;
+		page-offset = <0>;
+		display-offset = <0>;
+		segment-remap;
+		com-invdir;
+        inversion-on;   // 翻转颜色
+		prechargep = <0x22>;
+	};
+};
+
+/ {
+
+    chosen {
+        zmk,kscan = &mock_kscan;
+        zmk,matrix-transform = &default_transform;
+        zephyr,display = &oled;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <12>;
+        rows = <5>;
+//	|TAB   |Q   |W    |E   |R   |T    |    |    |UP  |     |    |    |UP  |     |    |Y    |U   |I   |O    |P   |[     |
+//	|LCTRL |A   |S    |D   |F   |G    |    |LEFT|1   |RIGHT|    |LEFT|2   |RIGHT|    |H    |J   |K   |L    |;   |'     |
+//	|LSHIFT|Z   |X    |C   |V   |B    |    |    |DOWN|     |    |    |DOWN|     |    |N    |M   |,   |.    |/   |RSHIFT|
+//	|      |    |LCTRL|LALT|DEL |SPACE|    |    |    |     |    |    |    |     |    |ENTER|BSPC|RGUI|RCTRL|    |      |
+//	|      |    |     |    |    |     |    |    |    |     |    |    |    |     |    |     |    |    |     |    |      |
+
+
+        map = <
+RC(1,5) RC(1,4) RC(1,3) RC(1,2) RC(1,1) RC(1,0)              RC(5,1)                       RC(5,7)              RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10) RC(1,11) 
+RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1) RC(2,0)      RC(5,3) RC(5,0) RC(5,4)      RC(5,10) RC(5,6) RC(5,9)      RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11) 
+RC(3,5) RC(3,4) RC(3,3) RC(3,2) RC(3,1) RC(3,0)              RC(5,2)                       RC(5,8)              RC(3,6) RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,11) 
+                RC(4,3) RC(4,2) RC(4,1) RC(4,0)                                                                 RC(4,6) RC(0,7) RC(5,8) RC(4,9)                  
+               
+        >;
+    };
+
+    mock_kscan: kscan_0 {
+        compatible = "zmk,kscan-mock";
+        columns = <0>;
+        rows = <0>;
+        events = <0>;
+    };
+
+};

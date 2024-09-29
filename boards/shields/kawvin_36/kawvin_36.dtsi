@@ -16,7 +16,7 @@
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <12>;
-        rows = <4>;
+        rows = <5>;
 //	|TAB   |Q   |W    |E   |R   |T    |    |    |UP  |     |    |    |UP  |     |    |Y    |U   |I   |O    |P   |[     |
 //	|LCTRL |A   |S    |D   |F   |G    |    |LEFT|1   |RIGHT|    |LEFT|2   |RIGHT|    |H    |J   |K   |L    |;   |'     |
 //	|LSHIFT|Z   |X    |C   |V   |B    |    |    |DOWN|     |    |    |DOWN|     |    |N    |M   |,   |.    |/   |RSHIFT|

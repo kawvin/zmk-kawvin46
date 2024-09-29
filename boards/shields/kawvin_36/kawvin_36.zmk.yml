@@ -10,5 +10,6 @@ features:
   - underglow
   - display
 siblings:
+  # - kawvin_36_dongle
   - kawvin_36_left
   - kawvin_36_right
