@@ -71,27 +71,27 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
 
     if (!state.usb_present) {
         lv_img_set_src(symbol, batterys_level[0]);
-        // if (level > 95) {
-        //     lv_canvas_draw_rect(canvas, 1, 3, 8, 12, &rect_white_dsc);
-        // } else if (level > 85) {
-        //     lv_canvas_draw_rect(canvas, 1, 4, 8, 12, &rect_white_dsc);
-        // } else if (level > 75) {
-        //     lv_canvas_draw_rect(canvas, 1, 5, 8, 12, &rect_white_dsc);
-        // } else if (level > 65) {
-        //     lv_canvas_draw_rect(canvas, 1, 6, 8, 12, &rect_white_dsc);
-        // } else if (level > 55) {
-        //     lv_canvas_draw_rect(canvas, 1, 7, 8, 12, &rect_white_dsc);
-        // } else if (level > 45) {
-        //     lv_canvas_draw_rect(canvas, 1, 8, 8, 12, &rect_white_dsc);
-        // } else if (level > 35) {
-        //     lv_canvas_draw_rect(canvas, 1, 9, 8, 12, &rect_white_dsc);
-        // } else if (level > 25) {
-        //     lv_canvas_draw_rect(canvas, 1, 10, 8, 12, &rect_white_dsc);
-        // } else if (level > 15) {
-        //     lv_canvas_draw_rect(canvas, 1, 11, 8, 12, &rect_white_dsc);
-        // } else {
+        if (level > 95) {
+            lv_canvas_draw_rect(canvas, 1, 3, 8, 12, &rect_white_dsc);
+        } else if (level > 85) {
+            lv_canvas_draw_rect(canvas, 1, 4, 8, 12, &rect_white_dsc);
+        } else if (level > 75) {
+            lv_canvas_draw_rect(canvas, 1, 5, 8, 12, &rect_white_dsc);
+        } else if (level > 65) {
+            lv_canvas_draw_rect(canvas, 1, 6, 8, 12, &rect_white_dsc);
+        } else if (level > 55) {
+            lv_canvas_draw_rect(canvas, 1, 7, 8, 12, &rect_white_dsc);
+        } else if (level > 45) {
+            lv_canvas_draw_rect(canvas, 1, 8, 8, 12, &rect_white_dsc);
+        } else if (level > 35) {
+            lv_canvas_draw_rect(canvas, 1, 9, 8, 12, &rect_white_dsc);
+        } else if (level > 25) {
+            lv_canvas_draw_rect(canvas, 1, 10, 8, 12, &rect_white_dsc);
+        } else if (level > 15) {
+            lv_canvas_draw_rect(canvas, 1, 11, 8, 12, &rect_white_dsc);
+        } else {
             
-        // }
+        }
         // lv_canvas_draw_img(canvas, 0, 0, batterys_level[0], &symbol);
     } else {
         lv_img_set_src(symbol, batterys_level[1]);
