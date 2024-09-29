@@ -424,21 +424,13 @@ combos:
   k: {t: ',', h: .}
 - p: [48, 47]
   k: {t: /, h: \}
-- p: [28, 29]
-  k: LEFT ARROW
-- p: [29, 30]
-  k: RIGHT
-- p: [30, 14]
-  k: UP ARROW
-- p: [28, 30]
-  k: DOWN
 - p: [9, 10]
   k: {t: '-', h: _}
 - p: [39, 40]
   k: ENTER
 - p: [45, 46]
   k: '?'
-- p: [58, 59, 60]
+- p: [58, 61]
   k: MUTE
 - p: [58, 60]
   k: VOL UP
