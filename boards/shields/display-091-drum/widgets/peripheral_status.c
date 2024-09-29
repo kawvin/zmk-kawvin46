@@ -232,7 +232,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_center(animimg1); //居中
     // lv_animimg_set_src(animimg1, (lv_img_decoder_t**)my_anim_imgs,MAX_IMGS_NUM  );
     lv_animimg_set_src(animimg1, SRC(dance_images));
-    lv_animimg_set_duration(animimg1,300);
+    lv_animimg_set_duration(animimg1,600);
     lv_animimg_set_repeat_count(animimg1,LV_ANIM_REPEAT_INFINITE);
     lv_animimg_start(animimg1 );
 
