@@ -141,8 +141,8 @@
             bindings = <&mo>, <&kp>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <180>;
+            tapping-term-ms = <500>;
+            quick-tap-ms = <200>;
         };
 
         as: auto_shift {
@@ -246,7 +246,7 @@
 
         direction_down {
             bindings = <&kp DOWN>;
-            key-positions = <30 46>;
+            key-positions = <28 30>;
             timeout-ms = <300>;
         };
 
@@ -262,7 +262,7 @@
         };
 
         question {
-            bindings = <&none>;
+            bindings = <&kp QMARK>;
             key-positions = <45 46>;
         };
 
@@ -304,8 +304,8 @@
 &mt GRAVE ESC  &kp N1    &kp N2     &kp N3       &kp N4     &kp N5      &kp N6    &kp N7         &kp N8     &kp N9    &kp N0     &mt UNDERSCORE MINUS
 &kp TAB        &kp Q     &kp W      &kp E        &kp R      &kp T       &kp UP    &kp PG_UP      &kp Y      &kp U     &kp I      &kp O                 &kp P     &mt RIGHT_BRACKET LEFT_BRACKET
 &kp LCTRL      &kp A     &kp S      &kp D        &ltq 2 F    &kp G       &kp LEFT  &kp N1         &kp RIGHT  &kp HOME  &kp N2     &kp END               &kp H     &kp J                           &kp K  &kp L  &kp SEMI  &kp SQT
-&kp LSHIFT     &kp Z     &kp X      &kp C        &lt 3 V    &kp B       &kp DOWN  &kp PAGE_DOWN  &kp N      &kp M     &kp COMMA  &kp DOT               &kp FSLH  &kp RSHIFT
-&kp LWIN       &kp LALT  &lt 4 DEL  &lt 1 SPACE  &kp SPACE  &lt 5 BSPC  &kp RALT  &kp RCTRL
+&kp LSHIFT     &kp Z     &kp X      &kp C        &ltq 3 V    &kp B       &kp DOWN  &kp PAGE_DOWN  &kp N      &kp M     &kp COMMA  &kp DOT               &kp FSLH  &kp RSHIFT
+&kp LWIN       &kp LALT  &ltq 4 DEL  &ltq 1 SPACE  &kp SPACE  &ltq 4 BSPC  &kp RALT  &kp RCTRL
             >;
 
             label = "Qwerty";
