@@ -63,7 +63,7 @@ layers:
   - {t: DEL, h: control}
   - {t: SPACE, h: number}
   - SPACE
-  - {t: BSPC, h: mouse}
+  - {t: BSPC, h: control}
   - RALT
   - RCTRL
   number:
@@ -398,7 +398,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
 combos:
@@ -430,14 +430,14 @@ combos:
   k: RIGHT
 - p: [30, 14]
   k: UP ARROW
-- p: [30, 46]
+- p: [28, 30]
   k: DOWN
 - p: [9, 10]
   k: {t: '-', h: _}
 - p: [39, 40]
   k: ENTER
 - p: [45, 46]
-  k: ''
+  k: '?'
 - p: [58, 59, 60]
   k: MUTE
 - p: [58, 60]
