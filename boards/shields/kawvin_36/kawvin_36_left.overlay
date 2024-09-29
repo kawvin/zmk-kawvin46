@@ -51,7 +51,7 @@
 
         // 0.91或0.96，使用以下
         compatible = "solomon,ssd1306fb";   //0.91   0.96
-        segment-offset = <30>;   //0.91   0.96
+        segment-offset = <0>;   //0.91   0.96
         multiplex-ratio = <39>; //72*40
         com-sequential; //1.30注销本行
         
@@ -63,7 +63,7 @@
 		reg = <0x3c>;
 		label = "LEFT_DISPLAY";
 		page-offset = <0>;
-		display-offset = <4>;
+		display-offset = <14>;
 		segment-remap;
 		com-invdir;
         inversion-on;   // 翻转颜色
