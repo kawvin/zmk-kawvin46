@@ -226,30 +226,6 @@
             timeout-ms = <200>;
         };
 
-        direction_left {
-            bindings = <&kp LEFT_ARROW>;
-            key-positions = <28 29>;
-            timeout-ms = <200>;
-        };
-
-        direction_right {
-            bindings = <&kp RIGHT>;
-            key-positions = <29 30>;
-            timeout-ms = <200>;
-        };
-
-        direction_up {
-            bindings = <&kp UP_ARROW>;
-            key-positions = <30 14>;
-            timeout-ms = <300>;
-        };
-
-        direction_down {
-            bindings = <&kp DOWN>;
-            key-positions = <28 30>;
-            timeout-ms = <300>;
-        };
-
         minus_under_right {
             bindings = <&mt UNDER MINUS>;
             key-positions = <9 10>;
@@ -268,7 +244,7 @@
 
         vol_mute {
             bindings = <&kp C_MUTE>;
-            key-positions = <58 59 60>;
+            key-positions = <58 61>;
         };
 
         vol_up {
