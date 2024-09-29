@@ -36,8 +36,8 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_set_size(widget->obj,72, 40);
     
     lv_style_init(&global_style);
-    // lv_style_set_text_font(&global_style, &lv_font_unscii_8);
-    lv_style_set_text_font(&global_style, &lv_font_unscii_16);
+    lv_style_set_text_font(&global_style, &lv_font_unscii_8);
+    // lv_style_set_text_font(&global_style, &lv_font_unscii_16);
     lv_style_set_text_letter_space(&global_style, 1);
     lv_style_set_text_line_space(&global_style, 1);
     lv_obj_add_style(widget->obj, &global_style, LV_PART_MAIN);
