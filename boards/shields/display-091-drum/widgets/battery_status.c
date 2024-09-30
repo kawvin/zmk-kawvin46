@@ -67,9 +67,11 @@ struct battery_state {
 // static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][14 * 9];
 static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][14 * 9];
 
-static void draw_battery(lv_obj_t *canvas, uint8_t level, bool usb_present) {
-    lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_COVER);
-    
+static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
+    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
+
+    uint8_t level = state.level;
+
     // 绘制电池
     lv_draw_rect_dsc_t rect_black_dsc;
     init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
@@ -79,25 +81,25 @@ static void draw_battery(lv_obj_t *canvas, uint8_t level, bool usb_present) {
     lv_draw_img_dsc_init(&img_dsc); 
 
     if (!usb_present) {
-        lv_canvas_draw_img(canvas, 0, 0, batterys_level[0], &img_dsc); //x,y是坐标，src是图像的源，可以是文件、结构体指针、Symbol，img_dsc是图像的样式。
+        lv_canvas_draw_img(symbol, 0, 0, batterys_level[0], &img_dsc); //x,y是坐标，src是图像的源，可以是文件、结构体指针、Symbol，img_dsc是图像的样式。
         if (level > 95) {
-            lv_canvas_draw_rect(canvas, 1, 3, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 3, 8, 13, &rect_white_dsc);
         } else if (level > 88) {
-            lv_canvas_draw_rect(canvas, 1, 4, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 4, 8, 13, &rect_white_dsc);
         } else if (level > 77) {
-            lv_canvas_draw_rect(canvas, 1, 5, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 5, 8, 13, &rect_white_dsc);
         } else if (level > 66) {
-            lv_canvas_draw_rect(canvas, 1, 6, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 6, 8, 13, &rect_white_dsc);
         } else if (level > 55) {
-            lv_canvas_draw_rect(canvas, 1, 7, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 7, 8, 13, &rect_white_dsc);
         } else if (level > 44) {
-            lv_canvas_draw_rect(canvas, 1, 8, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 8, 8, 13, &rect_white_dsc);
         } else if (level > 33) {
-            lv_canvas_draw_rect(canvas, 1, 9, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 9, 8, 13, &rect_white_dsc);
         } else if (level > 22) {
-            lv_canvas_draw_rect(canvas, 1, 10, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 10, 8, 13, &rect_white_dsc);
         } else if (level > 11) {
-            lv_canvas_draw_rect(canvas, 1, 11, 8, 13, &rect_white_dsc);
+            lv_canvas_draw_rect(symbol, 1, 11, 8, 13, &rect_white_dsc);
         } else {
             
         }
@@ -105,14 +107,7 @@ static void draw_battery(lv_obj_t *canvas, uint8_t level, bool usb_present) {
     } else {
         lv_canvas_draw_img(canvas, 0, 0, batterys_level[1], &img_dsc);
     }
-}
 
-static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
-    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
-
-    draw_battery(symbol, state.level, state.usb_present);
-
-    uint8_t level = state.level;
     if (level > 0 || state.usb_present) {
         lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
     } else {
