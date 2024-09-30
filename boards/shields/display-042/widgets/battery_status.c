@@ -47,7 +47,7 @@ struct battery_state {
 };
 
 // static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][14 * 9];
-static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][9 * 14];
+static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][13 * 20];
 
 static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
@@ -74,24 +74,30 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
         lv_draw_img_dsc_init(&img_dsc); //x,y是坐标，src是图像的源，可以是文件、结构体指针、Symbol，img_dsc是图像的样式。
         lv_canvas_draw_img(canvas, 0, 0, batterys_level[0], &img_dsc);
         // lv_img_set_src(symbol, batterys_level[0]);
-        if (level > 95) {
-            lv_canvas_draw_rect(canvas, 1, 3, 8, 12, &rect_white_dsc);
-        } else if (level > 85) {
-            lv_canvas_draw_rect(canvas, 1, 4, 8, 12, &rect_white_dsc);
-        } else if (level > 75) {
-            lv_canvas_draw_rect(canvas, 1, 5, 8, 12, &rect_white_dsc);
-        } else if (level > 65) {
-            lv_canvas_draw_rect(canvas, 1, 6, 8, 12, &rect_white_dsc);
-        } else if (level > 55) {
-            lv_canvas_draw_rect(canvas, 1, 7, 8, 12, &rect_white_dsc);
-        } else if (level > 45) {
-            lv_canvas_draw_rect(canvas, 1, 8, 8, 12, &rect_white_dsc);
-        } else if (level > 35) {
-            lv_canvas_draw_rect(canvas, 1, 9, 8, 12, &rect_white_dsc);
-        } else if (level > 25) {
-            lv_canvas_draw_rect(canvas, 1, 10, 8, 12, &rect_white_dsc);
-        } else if (level > 15) {
-            lv_canvas_draw_rect(canvas, 1, 11, 8, 12, &rect_white_dsc);
+        if (level > 96) {
+            lv_canvas_draw_rect(canvas, 2, 5, 8, 17, &rect_white_dsc);
+        } else if (level > 88) {
+            lv_canvas_draw_rect(canvas, 2, 6, 8, 17, &rect_white_dsc);
+        } else if (level > 80) {
+            lv_canvas_draw_rect(canvas, 2, 7, 8, 17, &rect_white_dsc);
+        } else if (level > 72) {
+            lv_canvas_draw_rect(canvas, 2, 8, 8, 17, &rect_white_dsc);
+        } else if (level > 64) {
+            lv_canvas_draw_rect(canvas, 2, 9, 8, 17, &rect_white_dsc);
+        } else if (level > 56) {
+            lv_canvas_draw_rect(canvas, 2, 10, 8, 17, &rect_white_dsc);
+        } else if (level > 48) {
+            lv_canvas_draw_rect(canvas, 2, 11, 8, 17, &rect_white_dsc);
+        } else if (level > 40) {
+            lv_canvas_draw_rect(canvas, 2, 12, 8, 17, &rect_white_dsc);
+        } else if (level > 32) {
+            lv_canvas_draw_rect(canvas, 2, 13, 8, 17, &rect_white_dsc);
+        } else if (level > 24) {
+            lv_canvas_draw_rect(canvas, 2, 14, 8, 17, &rect_white_dsc);
+        } else if (level > 16) {
+            lv_canvas_draw_rect(canvas, 2, 15, 8, 17, &rect_white_dsc);
+        } else if (level > 8) {
+            lv_canvas_draw_rect(canvas, 2, 16, 8, 17, &rect_white_dsc);
         } else {
             
         }
@@ -163,8 +169,8 @@ int zmk_widget_peripheral_battery_status_init(struct zmk_widget_peripheral_batte
         lv_obj_t *image_canvas = lv_canvas_create(widget->obj);
         // lv_obj_t *battery_label = lv_label_create(widget->obj);
 
-        lv_canvas_set_buffer(image_canvas, battery_image_buffer[i], 9, 14, LV_IMG_CF_TRUE_COLOR);
-        lv_obj_align(image_canvas, LV_ALIGN_TOP_LEFT, i*10, 1);
+        lv_canvas_set_buffer(image_canvas, battery_image_buffer[i], 13, 20, LV_IMG_CF_TRUE_COLOR);
+        lv_obj_align(image_canvas, LV_ALIGN_TOP_LEFT, i*15, 1);
         // lv_obj_align(battery_label, LV_ALIGN_TOP_LEFT, i*14+3, 10);
         
         lv_obj_add_flag(image_canvas, LV_OBJ_FLAG_HIDDEN);

@@ -57,7 +57,7 @@ enum selection_line_state {
     selection_line_state_bt
 } current_selection_line_state;
 
-lv_point_t selection_line_points[] = { {0, 0}, {11, 0} }; // will be replaced with lv_point_precise_t 
+lv_point_t selection_line_points[] = { {0, 0}, {13, 0} }; // will be replaced with lv_point_precise_t 
 
 struct output_status_state {
     struct zmk_endpoint_instance selected_endpoint;
@@ -186,21 +186,21 @@ int zmk_widget_output_status_init(struct zmk_widget_output_status *widget, lv_ob
     lv_obj_set_size(widget->obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
 
     lv_obj_t *usb = lv_img_create(widget->obj);
-    lv_obj_align(usb, LV_ALIGN_TOP_LEFT, 1, 4);
+    lv_obj_align(usb, LV_ALIGN_TOP_LEFT, 0, 3);
     lv_img_set_src(usb, &sym_usb);
 
     lv_obj_t *usb_hid_status = lv_img_create(widget->obj);
-    lv_obj_align_to(usb_hid_status, usb, LV_ALIGN_TOP_LEFT, 2, 7);
+    lv_obj_align_to(usb_hid_status, usb, LV_ALIGN_TOP_LEFT, 2, 9);
 
     lv_obj_t *bt = lv_img_create(widget->obj);
     lv_obj_align_to(bt, usb, LV_ALIGN_OUT_RIGHT_TOP, 2, 0);
     lv_img_set_src(bt, &sym_bt);
 
     lv_obj_t *bt_number = lv_img_create(widget->obj);
-    lv_obj_align_to(bt_number, bt, LV_ALIGN_OUT_RIGHT_TOP, 2, 7);
+    lv_obj_align_to(bt_number, bt, LV_ALIGN_OUT_RIGHT_TOP, 2, 9);
 
     lv_obj_t *bt_status = lv_img_create(widget->obj);
-    lv_obj_align_to(bt_status, bt, LV_ALIGN_OUT_RIGHT_TOP, 2, 1);
+    lv_obj_align_to(bt_status, bt, LV_ALIGN_OUT_RIGHT_TOP, 2, 0);
     
     static lv_style_t style_line;
     lv_style_init(&style_line);
