@@ -54,15 +54,11 @@ struct peripheral_status_state {
 };
 
 static void set_battery_symbol(lv_obj_t *widget, struct battery_status_state state) {
-    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
+    lv_obj_t *symbol = lv_obj_get_child(widget, peripheral_symbol_battery_status );
+    lv_obj_t *symbol_charge = lv_obj_get_child(widget, peripheral_symbol_charge);
     // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
     // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
     uint8_t level = state.level;
-    if (level > 0 || state.usb_present) {
-        lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    } else {
-        lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    }
     // 绘制电池
     lv_obj_t *canvas = lv_canvas_create(symbol);
     lv_draw_rect_dsc_t rect_black_dsc;
@@ -74,6 +70,7 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_status_state sta
     // lv_canvas_draw_rect(canvas, 1, 3, 27, 10, &rect_black_dsc);
 
     if (!state.usb_present) {
+        lv_obj_add_flag(symbol_charge, LV_OBJ_FLAG_HIDDEN);
         lv_draw_img_dsc_t img_dsc;
         lv_draw_img_dsc_init(&img_dsc); //x,y是坐标，src是图像的源，可以是文件、结构体指针、Symbol，img_dsc是图像的样式。
         lv_canvas_draw_img(canvas, 0, 0, batterys_level[0], &img_dsc);
@@ -107,7 +104,7 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_status_state sta
         }
         
     } else {
-        lv_img_set_src(symbol, batterys_level[1]);
+        lv_obj_clear_flag(symbol_charge, LV_OBJ_FLAG_HIDDEN);
     }
 }
 
