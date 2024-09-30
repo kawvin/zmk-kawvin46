@@ -20,7 +20,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/battery.h>
 
 #include "battery_status.h"
-
+#include "util.h"
 
 #if IS_ENABLED(CONFIG_ZMK_DONGLE_DISPLAY_DONGLE_BATTERY)
     #define SOURCE_OFFSET 1
@@ -31,29 +31,29 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
 LV_IMG_DECLARE(battery00_icon);
-LV_IMG_DECLARE(battery10_icon);
-LV_IMG_DECLARE(battery20_icon);
-LV_IMG_DECLARE(battery30_icon);
-LV_IMG_DECLARE(battery40_icon);
-LV_IMG_DECLARE(battery50_icon);
-LV_IMG_DECLARE(battery60_icon);
-LV_IMG_DECLARE(battery70_icon);
-LV_IMG_DECLARE(battery80_icon);
-LV_IMG_DECLARE(battery90_icon);
+// LV_IMG_DECLARE(battery10_icon);
+// LV_IMG_DECLARE(battery20_icon);
+// LV_IMG_DECLARE(battery30_icon);
+// LV_IMG_DECLARE(battery40_icon);
+// LV_IMG_DECLARE(battery50_icon);
+// LV_IMG_DECLARE(battery60_icon);
+// LV_IMG_DECLARE(battery70_icon);
+// LV_IMG_DECLARE(battery80_icon);
+// LV_IMG_DECLARE(battery90_icon);
 LV_IMG_DECLARE(batterycharge_icon);
 LV_IMG_DECLARE(disconnect_icon);
 
 const lv_img_dsc_t *batterys_level[] = {
     &battery00_icon,
-    &battery10_icon,
-    &battery20_icon,
-    &battery30_icon,
-    &battery40_icon,
-    &battery50_icon,
-    &battery60_icon,
-    &battery70_icon,
-    &battery80_icon,
-    &battery90_icon,
+    // &battery10_icon,
+    // &battery20_icon,
+    // &battery30_icon,
+    // &battery40_icon,
+    // &battery50_icon,
+    // &battery60_icon,
+    // &battery70_icon,
+    // &battery80_icon,
+    // &battery90_icon,
     &batterycharge_icon,
     &disconnect_icon,
 };
@@ -77,31 +77,67 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     } else {
         lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
     }
+    // 绘制电池
+    lv_obj_t *canvas = lv_canvas_create(symbol);
+    lv_draw_rect_dsc_t rect_black_dsc;
+    init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
+    lv_draw_rect_dsc_t rect_white_dsc;
+    init_rect_dsc(&rect_white_dsc, LVGL_FOREGROUND);
     if (!state.usb_present) {
+        lv_draw_img_dsc_t img_dsc;
+        lv_draw_img_dsc_init(&img_dsc); //x,y是坐标，src是图像的源，可以是文件、结构体指针、Symbol，img_dsc是图像的样式。
+        lv_canvas_draw_img(canvas, 0, 0, batterys_level[0], &img_dsc);
+        // lv_img_set_src(symbol, batterys_level[0]);
         if (level > 95) {
-            lv_img_set_src(symbol, batterys_level[9]);
-        } else if (level > 85) {
-            lv_img_set_src(symbol, batterys_level[8]);
-        } else if (level > 75) {
-            lv_img_set_src(symbol, batterys_level[7]);
-        } else if (level > 65) {
-            lv_img_set_src(symbol, batterys_level[6]);
+            lv_canvas_draw_rect(canvas, 1, 3, 8, 13, &rect_white_dsc);
+        } else if (level > 88) {
+            lv_canvas_draw_rect(canvas, 1, 4, 8, 13, &rect_white_dsc);
+        } else if (level > 77) {
+            lv_canvas_draw_rect(canvas, 1, 5, 8, 13, &rect_white_dsc);
+        } else if (level > 66) {
+            lv_canvas_draw_rect(canvas, 1, 6, 8, 13, &rect_white_dsc);
         } else if (level > 55) {
-            lv_img_set_src(symbol, batterys_level[5]);
-        } else if (level > 45) {
-            lv_img_set_src(symbol, batterys_level[4]);
-        } else if (level > 35) {
-            lv_img_set_src(symbol, batterys_level[3]);
-        } else if (level > 25) {
-            lv_img_set_src(symbol, batterys_level[2]);
-        } else if (level > 15) {
-            lv_img_set_src(symbol, batterys_level[1]);
+            lv_canvas_draw_rect(canvas, 1, 7, 8, 13, &rect_white_dsc);
+        } else if (level > 44) {
+            lv_canvas_draw_rect(canvas, 1, 8, 8, 13, &rect_white_dsc);
+        } else if (level > 33) {
+            lv_canvas_draw_rect(canvas, 1, 9, 8, 13, &rect_white_dsc);
+        } else if (level > 22) {
+            lv_canvas_draw_rect(canvas, 1, 10, 8, 13, &rect_white_dsc);
+        } else if (level > 11) {
+            lv_canvas_draw_rect(canvas, 1, 11, 8, 13, &rect_white_dsc);
         } else {
-            lv_img_set_src(symbol, batterys_level[0]);
+            
         }
+        
     } else {
-        lv_img_set_src(symbol, batterys_level[10]);
+        lv_img_set_src(symbol, batterys_level[1]);
     }
+    // if (!state.usb_present) {
+    //     if (level > 95) {
+    //         lv_img_set_src(symbol, batterys_level[9]);
+    //     } else if (level > 85) {
+    //         lv_img_set_src(symbol, batterys_level[8]);
+    //     } else if (level > 75) {
+    //         lv_img_set_src(symbol, batterys_level[7]);
+    //     } else if (level > 65) {
+    //         lv_img_set_src(symbol, batterys_level[6]);
+    //     } else if (level > 55) {
+    //         lv_img_set_src(symbol, batterys_level[5]);
+    //     } else if (level > 45) {
+    //         lv_img_set_src(symbol, batterys_level[4]);
+    //     } else if (level > 35) {
+    //         lv_img_set_src(symbol, batterys_level[3]);
+    //     } else if (level > 25) {
+    //         lv_img_set_src(symbol, batterys_level[2]);
+    //     } else if (level > 15) {
+    //         lv_img_set_src(symbol, batterys_level[1]);
+    //     } else {
+    //         lv_img_set_src(symbol, batterys_level[0]);
+    //     }
+    // } else {
+    //     lv_img_set_src(symbol, batterys_level[10]);
+    // }
 }
 
 void battery_status_update_cb(struct battery_state state) {
