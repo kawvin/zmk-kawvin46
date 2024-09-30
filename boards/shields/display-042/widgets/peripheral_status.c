@@ -20,10 +20,6 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/usb.h>
 #include <zmk/ble.h>
 
-// #include <zmk/events/wpm_state_changed.h>
-// #include <zmk/endpoints.h>
-// #include <zmk/wpm.h>
-
 #include "peripheral_status.h"
 
 #define SRC(array) (const void **)array, sizeof(array) / sizeof(lv_img_dsc_t *)
@@ -35,6 +31,7 @@ LV_IMG_DECLARE(symbol_ok_icon);
 LV_IMG_DECLARE(symbol_nok_icon);
 LV_IMG_DECLARE(symbol_charge_icon);
 LV_IMG_DECLARE(slience_icon);
+LV_IMG_DECLARE(battery00_icon);
 LV_IMG_DECLARE(batterycharge_icon);
 LV_IMG_DECLARE(disconnect_icon);
 
