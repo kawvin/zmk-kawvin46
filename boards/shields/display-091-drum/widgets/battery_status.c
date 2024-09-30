@@ -31,29 +31,29 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
 LV_IMG_DECLARE(battery00_icon);
-// LV_IMG_DECLARE(battery10_icon);
-// LV_IMG_DECLARE(battery20_icon);
-// LV_IMG_DECLARE(battery30_icon);
-// LV_IMG_DECLARE(battery40_icon);
-// LV_IMG_DECLARE(battery50_icon);
-// LV_IMG_DECLARE(battery60_icon);
-// LV_IMG_DECLARE(battery70_icon);
-// LV_IMG_DECLARE(battery80_icon);
-// LV_IMG_DECLARE(battery90_icon);
+LV_IMG_DECLARE(battery10_icon);
+LV_IMG_DECLARE(battery20_icon);
+LV_IMG_DECLARE(battery30_icon);
+LV_IMG_DECLARE(battery40_icon);
+LV_IMG_DECLARE(battery50_icon);
+LV_IMG_DECLARE(battery60_icon);
+LV_IMG_DECLARE(battery70_icon);
+LV_IMG_DECLARE(battery80_icon);
+LV_IMG_DECLARE(battery90_icon);
 LV_IMG_DECLARE(batterycharge_icon);
 LV_IMG_DECLARE(disconnect_icon);
 
 const lv_img_dsc_t *batterys_level[] = {
     &battery00_icon,
-    // &battery10_icon,
-    // &battery20_icon,
-    // &battery30_icon,
-    // &battery40_icon,
-    // &battery50_icon,
-    // &battery60_icon,
-    // &battery70_icon,
-    // &battery80_icon,
-    // &battery90_icon,
+    &battery10_icon,
+    &battery20_icon,
+    &battery30_icon,
+    &battery40_icon,
+    &battery50_icon,
+    &battery60_icon,
+    &battery70_icon,
+    &battery80_icon,
+    &battery90_icon,
     &batterycharge_icon,
     &disconnect_icon,
 };
@@ -67,7 +67,7 @@ struct battery_state {
 // static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][14 * 9];
 static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][14 * 9];
 
-static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
+static void set_battery_symbol2(lv_obj_t *widget, struct battery_state state) {
     lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
 
     uint8_t level = state.level;
@@ -116,7 +116,7 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     
 }
 
-static void set_battery_symbol1(lv_obj_t *widget, struct battery_state state) {
+static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
     lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
     // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
     // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
@@ -127,31 +127,31 @@ static void set_battery_symbol1(lv_obj_t *widget, struct battery_state state) {
         lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
     }
     
-    // if (!state.usb_present) {
-    //     if (level > 95) {
-    //         lv_img_set_src(symbol, batterys_level[9]);
-    //     } else if (level > 85) {
-    //         lv_img_set_src(symbol, batterys_level[8]);
-    //     } else if (level > 75) {
-    //         lv_img_set_src(symbol, batterys_level[7]);
-    //     } else if (level > 65) {
-    //         lv_img_set_src(symbol, batterys_level[6]);
-    //     } else if (level > 55) {
-    //         lv_img_set_src(symbol, batterys_level[5]);
-    //     } else if (level > 45) {
-    //         lv_img_set_src(symbol, batterys_level[4]);
-    //     } else if (level > 35) {
-    //         lv_img_set_src(symbol, batterys_level[3]);
-    //     } else if (level > 25) {
-    //         lv_img_set_src(symbol, batterys_level[2]);
-    //     } else if (level > 15) {
-    //         lv_img_set_src(symbol, batterys_level[1]);
-    //     } else {
-    //         lv_img_set_src(symbol, batterys_level[0]);
-    //     }
-    // } else {
-    //     lv_img_set_src(symbol, batterys_level[10]);
-    // }
+    if (!state.usb_present) {
+        if (level > 95) {
+            lv_img_set_src(symbol, batterys_level[9]);
+        } else if (level > 85) {
+            lv_img_set_src(symbol, batterys_level[8]);
+        } else if (level > 75) {
+            lv_img_set_src(symbol, batterys_level[7]);
+        } else if (level > 65) {
+            lv_img_set_src(symbol, batterys_level[6]);
+        } else if (level > 55) {
+            lv_img_set_src(symbol, batterys_level[5]);
+        } else if (level > 45) {
+            lv_img_set_src(symbol, batterys_level[4]);
+        } else if (level > 35) {
+            lv_img_set_src(symbol, batterys_level[3]);
+        } else if (level > 25) {
+            lv_img_set_src(symbol, batterys_level[2]);
+        } else if (level > 15) {
+            lv_img_set_src(symbol, batterys_level[1]);
+        } else {
+            lv_img_set_src(symbol, batterys_level[0]);
+        }
+    } else {
+        lv_img_set_src(symbol, batterys_level[10]);
+    }
 }
 
 void battery_status_update_cb(struct battery_state state) {
