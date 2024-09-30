@@ -81,4 +81,8 @@ include:
   - board: nice_nano_v2
     shield: kawvin_36_left display_042
     cmake-args: -DCONFIG_ZMK_DISPLAY=y
-    artifact-name: kawvin36_M3_1_LeftWithDrum_central
+    artifact-name: kawvin36_M3_1_LeftWith042_central
+  - board: nice_nano_v2
+    shield: kawvin_36_right display_042
+    cmake-args: -DCONFIG_ZMK_DISPLAY=y
+    artifact-name: kawvin36_M3_2_RightWith042

@@ -45,21 +45,32 @@
 	pinctrl-names = "default", "sleep";
     
 	oled: ssd1306@3c {
-        // 分辨率修改
-        width = <128>;
-		height = <40>;
+        // OLED 0.42，使用以下
+        width = <128>;  //72*40 
+		height = <40>;  //72*40 
+        compatible = "solomon,ssd1306fb";   //OLED 0.42
+        segment-offset = <0>;   //OLED 0.42
+        multiplex-ratio = <39>; //72*40  
+        //com-sequential; //OLED 0.42, OLED1.30注销本行
+        
+        // OLED 0.91或OLED 0.96，使用以下
+        //width = <128>;
+		//height = <64>;    //128*64
+		//height = <32>;    //128*32
+        compatible = "solomon,ssd1306fb";   //OLED 0.91, OLED 0.96
+        segment-offset = <0>;   //OLED 0.91, OLED 0.96
+        multiplex-ratio = <31>; //128*32
+        multiplex-ratio = <63>; //128*64
+        com-sequential; //OLED 0.42, OLED1.30注销本行
 
-        // 0.91或0.96，使用以下
-        compatible = "solomon,ssd1306fb";   //0.91   0.96
-        segment-offset = <0>;   //0.91   0.96
-        multiplex-ratio = <39>; //72*40
-        //com-sequential; //1.30注销本行
-        
-        // 1.30，使用以下
-        //compatible = "sinowealth,sh1106";   //1.30
-        //segment-offset = <2>;   //1.30
+        // OLED 1.30，使用以下
+        //width = <128>;
+		//height = <64>;
+        //compatible = "sinowealth,sh1106";   //OLED 1.30
+        //segment-offset = <2>;   //OLED 1.30
 		//multiplex-ratio = <63>; //128*64
-        
+        //com-sequential; //OLED 0.42, OLED1.30注销本行
+
 		reg = <0x3c>;
 		label = "LEFT_DISPLAY";
 		page-offset = <0>;
