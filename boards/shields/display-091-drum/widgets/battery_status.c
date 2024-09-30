@@ -105,7 +105,7 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
         }
         
     } else {
-        lv_canvas_draw_img(canvas, 0, 0, batterys_level[1], &img_dsc);
+        lv_canvas_draw_img(symbol, 0, 0, batterys_level[1], &img_dsc);
     }
 
     if (level > 0 || state.usb_present) {
