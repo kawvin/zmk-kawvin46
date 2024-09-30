@@ -67,27 +67,19 @@ struct battery_state {
 // static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][14 * 9];
 static lv_color_t battery_image_buffer[ZMK_SPLIT_BLE_PERIPHERAL_COUNT + SOURCE_OFFSET][14 * 9];
 
-static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
-    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
-    // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
-    // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
-    uint8_t level = state.level;
-    if (level > 0 || state.usb_present) {
-        lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    } else {
-        lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
-    }
+static void draw_battery(lv_obj_t *canvas, uint8_t level, bool usb_present) {
+    lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_COVER);
+    
     // 绘制电池
-    lv_obj_t *canvas = lv_canvas_create(symbol);
     lv_draw_rect_dsc_t rect_black_dsc;
     init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
     lv_draw_rect_dsc_t rect_white_dsc;
     init_rect_dsc(&rect_white_dsc, LVGL_FOREGROUND);
-    if (!state.usb_present) {
-        lv_draw_img_dsc_t img_dsc;
-        lv_draw_img_dsc_init(&img_dsc); //x,y是坐标，src是图像的源，可以是文件、结构体指针、Symbol，img_dsc是图像的样式。
-        lv_canvas_draw_img(canvas, 0, 0, batterys_level[0], &img_dsc);
-        // lv_img_set_src(symbol, batterys_level[0]);
+    lv_draw_img_dsc_t img_dsc;
+    lv_draw_img_dsc_init(&img_dsc); 
+
+    if (!usb_present) {
+        lv_canvas_draw_img(canvas, 0, 0, batterys_level[0], &img_dsc); //x,y是坐标，src是图像的源，可以是文件、结构体指针、Symbol，img_dsc是图像的样式。
         if (level > 95) {
             lv_canvas_draw_rect(canvas, 1, 3, 8, 13, &rect_white_dsc);
         } else if (level > 88) {
@@ -111,8 +103,35 @@ static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
         }
         
     } else {
-        lv_img_set_src(symbol, batterys_level[1]);
+        lv_canvas_draw_img(canvas, 0, 0, batterys_level[1], &img_dsc);
     }
+}
+
+static void set_battery_symbol(lv_obj_t *widget, struct battery_state state) {
+    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
+
+    draw_battery(symbol, state.level, state.usb_present);
+
+    uint8_t level = state.level;
+    if (level > 0 || state.usb_present) {
+        lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    } else {
+        lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    }
+    
+}
+
+static void set_battery_symbol1(lv_obj_t *widget, struct battery_state state) {
+    lv_obj_t *symbol = lv_obj_get_child(widget, state.source );
+    // lv_obj_t *symbol = lv_obj_get_child(widget, state.source * 2);
+    // lv_obj_t *label = lv_obj_get_child(widget, state.source * 2 + 1);
+    uint8_t level = state.level;
+    if (level > 0 || state.usb_present) {
+        lv_obj_clear_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    } else {
+        lv_obj_add_flag(symbol, LV_OBJ_FLAG_HIDDEN);
+    }
+    
     // if (!state.usb_present) {
     //     if (level > 95) {
     //         lv_img_set_src(symbol, batterys_level[9]);
